@@ -1,4 +1,5 @@
 package LINKEDLIST;
+import java.util.*;
 public class List1
 {
 public static void main(String[] args)
@@ -20,24 +21,32 @@ while(head!=null)
 System.out.println(head.data);
 head=head.next;
 }*/
+Scanner sc=new Scanner(System.in);
 Node head=new Node(1);
 Node temp=head;//STORING REFERANCE OF HEAD
 temp.next=new Node(2);
 temp.next.next=new Node(3);
 temp.next.next.next=new Node(4);
 
-head=insertAtHead(head,5);//INSERTION AT START
+System.out.print("scan DATA to be inserted at START of LinkedList: ");
+int n1=sc.nextInt();
+head=insertAtHead(head,n1);//INSERTION AT START
 temp=head;//UPDATION IN REFERANCE OF HEAD
+Print(head);//PRINT FUNCTION
 
-insertAtEnd(head,6);//INSERTION AT END
-while(temp!=null)
+System.out.print("scan DATA to be inserted at End of LinkedList: ");
+int n2=sc.nextInt();
+insertAtEnd(head,n2);//INSERTION AT END
+Print(head);//PRINT FUNCTION
+}
+public static void Print(Node head)
 {
-System.out.print(temp.data+" ");
-temp=temp.next;
+while(head!=null)
+{
+System.out.print(head.data+" ");
+head=head.next;
 }
 System.out.println();
-System.out.println("==>"+ head.getCount());//count of Nodes Created
-
 }
 static Node insertAtHead(Node head,int data)
 {
