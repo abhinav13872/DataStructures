@@ -24,32 +24,38 @@ System.out.print("ENTER THE NO. OF TESTCASES: ");
 int T=sc.nextInt();
 while(T-->0)
 {
+System.out.print("ENTER THE SIZE. OF LINKEDLIST1: ");
 int n1=sc.nextInt();//SIZE
+System.out.print("ENTER THE SIZE. OF LINKEDLIST2: ");
 int n2=sc.nextInt();
+System.out.print("ENTER THE SIZE. OF LINKEDLIST3: ");
 int n3=sc.nextInt();
 List6 l1=new List6();
 List6 l2=new List6();
 List6 l3=new List6();
 
+System.out.print("SCAN LINKEDLIST1: ");
 Node head1=new Node(sc.nextInt());
 Node tail1=head1;
 for(int i=1;i<n1;i++)
 {
 tail1.next=(new Node(sc.nextInt()));
-tail1=tail1.next;
+tail1=tail1.next;//STORING END'S REFERANCE
 }
 
+System.out.print("SCAN LINKEDLIST2: ");
 Node head2=new Node(sc.nextInt());
 Node tail2=head2;
 for(int i=1;i<n2;i++)
 {
 tail2.next=(new Node(sc.nextInt()));
-tail2=tail2.next;
+tail2=tail2.next;//STORING END'S REFERANCE
 }
 
+System.out.print("SCAN LINKEDLIST3: ");
 Node head3=new Node(sc.nextInt());
-tail1.next=head3;//LINKING l1 WITH l3
-tail2.next=head3;//LINKING l2 WITH l3
+tail1.next=head3;//LINKING LINKEDLIST1 WITH LINKEDLIST3
+tail2.next=head3;//LINKING LINKEDLIST2 WITH LINKEDLIST3
 Node tail3=head3;
 for(int i=1;i<n3;i++)
 {
@@ -57,9 +63,22 @@ tail3.next=(new Node(sc.nextInt()));
 tail3=tail3.next;
 }
 
+System.out.print("LINKEDLIST1: ");
+Print(head1);
+System.out.print("LINKEDLIST2: ");
+Print(head2);
 Intersect obj=new Intersect();
-System.out.println(obj.intersectPoint(head1,head2));
+System.out.println("ELEMENT AT INTERSECTION: "+obj.intersectPoint(head1,head2));
 }
+}
+public static void Print(Node head)
+{
+while(head!=null)
+{
+System.out.print(head.data+" ");
+head=head.next;
+}
+System.out.println();
 }
 }
 class Intersect
