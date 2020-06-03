@@ -28,15 +28,22 @@ temp.next=new Node(2);
 temp.next.next=new Node(3);
 temp.next.next.next=new Node(4);
 
+System.out.print("LinkedList: ");
+Print(head);//PRINT FUNCTION
+
 System.out.print("scan DATA to be inserted at START of LinkedList: ");
 int n1=sc.nextInt();
 head=insertAtHead(head,n1);//INSERTION AT START
 temp=head;//UPDATION IN REFERANCE OF HEAD
+
+System.out.print("LinkedList: ");
 Print(head);//PRINT FUNCTION
 
 System.out.print("scan DATA to be inserted at End of LinkedList: ");
 int n2=sc.nextInt();
 insertAtEnd(head,n2);//INSERTION AT END
+
+System.out.print("LinkedList: ");
 Print(head);//PRINT FUNCTION
 }
 public static void Print(Node head)

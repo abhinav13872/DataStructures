@@ -28,6 +28,7 @@ Print(head);
 }
 public static void Print(Node head)
 {
+System.out.print("LINKEDLIST: ");
 while(head!=null)
 {
 System.out.print(head.data+" ");

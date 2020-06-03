@@ -5,11 +5,23 @@ public class List3
 public static void main(String[] args)
 {
 Scanner sc=new Scanner(System.in);
-Node head=new Node(1);
-head.next=new Node(2);
-head.next.next=new Node(3);
+System.out.print("Enter the no. of Testcases: ");
+int T=sc.nextInt();//TESTCASES
+while(T-->0)
+{
+System.out.print("Scan LINKEDLIST size: ");
+int n=sc.nextInt();
+System.out.print("Scan LINKEDLIST: ");
+Node head=new Node(sc.nextInt());
+Node tail=head;
+for(int i=0;i<n-1;i++)
+{
+tail.next=new Node(sc.nextInt());
+tail=tail.next;
+}
 Print(head);
 System.out.println("MiddleElement: " + MiddleElement(head));
+}
 }
 public static int MiddleElement(Node head)
 {

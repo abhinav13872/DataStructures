@@ -9,14 +9,26 @@ Node head=new Node(1);
 head.next=new Node(2);
 head.next.next=new Node(3);
 
+System.out.print("LinkedList: ");
+Print(head);//PRINT FUNCTION
+
 //head=deleteAtStart(head);//DELETION OF NODE FROM BEGINNING
 //deleteAtEnd(head);//DELETION OF NODE AT END
-
+System.out.print("Scan the Position for Insertion: ");
 int p=sc.nextInt();//SCANS THE POSITION(FOR INSERTION/DELETION OF NODE)
+System.out.print("Scan the Element for Insertion: ");
+int d=sc.nextInt();
+head=insertNode(head,d,p);//INSERTION AT Nth POSITION
 
-//head=insertNode(head,8,p);//INSERTION AT Nth POSITION
-head=deleteNode(head,p);//DELETION AT Nth POSITION
-Print(head);
+System.out.print("LinkedList: ");
+Print(head);//PRINT FUNCTION
+
+System.out.print("Scan the Position for Deletion: ");
+int p1=sc.nextInt();//SCANS THE POSITION(FOR INSERTION/DELETION OF NODE)
+head=deleteNode(head,p1);//DELETION AT Nth POSITION
+
+System.out.print("LinkedList: ");
+Print(head);//PRINT FUNCTION
 }
 public static Node deleteAtStart(Node head)
 {
