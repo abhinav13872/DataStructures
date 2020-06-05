@@ -22,35 +22,34 @@ tail=tail.next;
 System.out.print("Scan Nth term of LINKEDLIST to get: ");
 int n1=sc.nextInt();
 Print(head);
-System.out.println("Term at position "+n1+" from last is: "+getNthFromLast(head,n1));
+System.out.println("Term at position->"+n1+" from last is: "+getNthFromLast(head,n1));
 
 }
 }
 static int getNthFromLast(Node head, int n)
 {
-Node temp=head;
-int len=0;
-while(temp!=null)
-{
-len++;
-temp=temp.next;
-}
-if(n>len) return -1;
-
 Node fptr=head;
 Node sptr=head;
-for(int i=0;i<n-1;i++)
+/*
+From end jiss position pe element batana h
+fptr ko utne steps jump krado!!
+*/
+for(int i=0;i<n;i++)
 fptr=fptr.next;
-     	
-while(fptr.next!=null)
+
+/*
+Now fptr jb null hoga tb sptr required position
+pr hoga
+*/
+while(fptr!=null)
 {
-//System.out.println("=>"+fptr.data);
-//System.out.println("===>"+sptr.data);
 fptr=fptr.next;
 sptr=sptr.next;
 }
 return sptr.data;
 }
+
+
 public static void Print(Node head)
 {
 System.out.print("LINKEDLIST: ");
