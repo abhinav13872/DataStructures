@@ -6,7 +6,6 @@ public class ParenthesisChecker
 
 public static boolean ParenthesisCheck(String str)
 {
-if(str.length()%2!=0) return false;
 
 Stack<Character> s=new Stack<>();
 
@@ -20,7 +19,26 @@ else if(c==')' || c=='}' || c==']')
 
 if(s.isEmpty()) return false;
 
+/*char ch=s.peek();
+if((c==')' && ch!='(') ||
+   (c=='}' && ch!='{') ||
+   (c==']' && ch!=']')
+   return false;
+s.pop();//MATCH FOUND SO POP KRADO!!
+*/
+
+/*
+if Match got found then proceed ahead else false will be returned
+so mtlb agr function return nhi kia mtlb sb shi chl rha h so pop krna pdega
+hr baar so why can't we use single operation!!
+*/
+
 char ch=s.pop();
+/*if((c==')' && ch!='(') ||
+   (c=='}' && ch!='{') ||
+   (c==']' && ch!='['))
+   return false;
+*/
 
 if(!matchingPair(c,ch)) return false;
 }
