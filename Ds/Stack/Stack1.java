@@ -1,6 +1,8 @@
 package STACK;
+import java.util.*;
 public class Stack1
 {
+/*
 final int size=10;
 int arr[]=new int[size];
 int top=-1;//TELLING STACK IS EMPTY
@@ -44,11 +46,12 @@ return -1;
 }
 return arr[top--];
 }
-
+*/
 
 public static void main(String[] args)
 {
-Stack1 s=new Stack1();
+//Stack1 s=new Stack1();
+Stack<Integer> s=new Stack<>();
 System.out.println("EMPTY STACK: "+s.isEmpty());
 s.push(1);//0
 s.push(2);//1
@@ -61,7 +64,7 @@ s.push(8);//7
 s.push(9);//8
 s.push(10);//9
 s.push(11);//10
-//s.push(9);//11
+s.push(9);//11
 System.out.println("ELEMENT POPED: "+s.pop());
 System.out.println("ELEMENT AT PEEK: "+s.peek());
 }
