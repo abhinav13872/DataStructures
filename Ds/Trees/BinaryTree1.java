@@ -30,8 +30,9 @@ System.out.println("Height of Binary Tree: "+ bt.HeighOfTree(bt.root));
 System.out.print("Scan Level: ");
 int level=sc.nextInt();
 
-System.out.println("ELEMENTS AT LEVEL "+ level +" are: ");
+System.out.println("ELEMENTS AT LEVEL=>"+ level +" are: ");
 bt.PrintAtLevel(bt.root,level);
+System.out.println();
 }
 
 
@@ -52,7 +53,6 @@ return;
 }
 PrintAtLevel(root.left,level-1);
 PrintAtLevel(root.right,level-1);
-
 }
 }
 
