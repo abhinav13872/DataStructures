@@ -1,15 +1,15 @@
 package TREES;
 import java.util.Scanner;
-public class BinaryTree2
+public class BinaryTree4
 {
 Node root;
 
-public BinaryTree2()
+public BinaryTree4()
 {
 this.root=null;
 }
 
-public BinaryTree2(int data)
+public BinaryTree4(int data)
 {
 this.root=new Node(data);
 }
@@ -17,7 +17,7 @@ this.root=new Node(data);
 public static void main(String[] args)
 {
 Scanner sc=new Scanner(System.in);
-BinaryTree2 bt=new BinaryTree2(1);
+BinaryTree4 bt=new BinaryTree4(1);
 bt.root.left=new Node(2);
 bt.root.right=new Node(3);
 bt.root.left.left=new Node(4);
@@ -27,56 +27,35 @@ bt.root.right.right=new Node(7);
 
 System.out.println("Height of Tree: "+bt.height(bt.root));
 
-System.out.print("PREORDER: ");
-bt.PreOrder(bt.root);
-System.out.println();
-
-System.out.print("INORDER: ");
-bt.InOrder(bt.root);
-System.out.println();
-
-System.out.print("POSTORDER: ");
-bt.PostOrder(bt.root);
-System.out.println();
-
 System.out.println("BFS(BREADTH FIRST SEARCH):- ");
 bt.BFS(bt.root);
+
+System.out.print("ENTER THE VALUE OF TWO NODES: ");
+System.out.println((bt.findLCA(bt.root,sc.nextInt(),sc.nextInt())).data);
+
 }
+
+
+public Node findLCA(Node root,int n1,int n2)
+{
+if(root == null) return null;
+if(root.data == n1 || root.data == n2) return root;
+/*
+ASSUMPTION => BOTH N1 AND N2 ARE EXISTING IN A BINARY TREE!!
+*/
+Node left_LCA=findLCA(root.left,n1,n2);
+Node right_LCA=findLCA(root.right,n1,n2);
+
+if(left_LCA != null && right_LCA != null) return root;
+if(left_LCA != null) return left_LCA;
+return right_LCA;
+}
+
 
 public int height(Node root)
 {
 if(root == null) return -1;
 return 1 + Math.max(height(root.left),height(root.right));
-}
-
-
-public void PreOrder(Node root)
-{
-if(root == null) return;
-
-System.out.print(root.data+" ");
-PreOrder(root.left);
-PreOrder(root.right);
-}
-
-
-public void InOrder(Node root)
-{
-if(root == null) return;
-
-InOrder(root.left);
-System.out.print(root.data+" ");
-InOrder(root.right);
-}
-
-
-public void PostOrder(Node root)
-{
-if(root == null) return;
-
-PostOrder(root.left);
-PostOrder(root.right);
-System.out.print(root.data+" ");
 }
 
 
@@ -118,10 +97,5 @@ this.right=null;
 }
 }
 /*
-DFS (DEPTH FIRST SEARCH)
-1. PREORDER
-2. INORDER
-3. POSTORDER
-
-BFS (BREADTH FIRST SEARCH)/LEVEL ORDER TRAVERSAL
+LOWEST COMMON ANCESTOR IN A BINARY TREE
 */
