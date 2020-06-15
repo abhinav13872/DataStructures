@@ -22,7 +22,7 @@ if(s.isEmpty()) return false;
 /*char ch=s.peek();
 if((c==')' && ch!='(') ||
    (c=='}' && ch!='{') ||
-   (c==']' && ch!=']')
+   (c==']' && ch!='['))
    return false;
 s.pop();//MATCH FOUND SO POP KRADO!!
 */
