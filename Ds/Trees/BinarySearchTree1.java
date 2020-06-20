@@ -1,5 +1,8 @@
 package TREES;
 import java.util.Scanner;
+import java.util.Queue;
+import java.util.LinkedList;
+
 public class BinarySearchTree1
 {
 public static void main(String[] args)
@@ -104,12 +107,28 @@ System.out.print(root.data+" ");
 
 public void BFS(BSTNode root)
 {
+if(root == null) return;
+/*
 int height=height(root);
 for(int i=0;i<=height;i++)
 {
 PrintAtLevel(root,i);
 System.out.println();
 }
+*/
+
+Queue<BSTNode> q=new LinkedList<>();
+q.add(root);
+
+while(!q.isEmpty())
+{
+BSTNode temp=q.poll();
+System.out.print(temp.data +" ");
+
+if(temp.left != null) q.add(temp.left);
+if(temp.right != null) q.add(temp.right);
+}
+System.out.println();
 }
 }
 
