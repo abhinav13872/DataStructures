@@ -1,0 +1,85 @@
+package GRAPHS;
+import java.util.LinkedList;//CLASS
+import java.util.Queue;//INTERFACE
+import java.util.Scanner;
+
+public class Graph4
+{
+int v;//NO._OF_NODES
+LinkedList<Integer> arr[];
+
+Graph4(int v)
+{
+this.v=v;
+arr=new LinkedList[v];//arr[] -> LinkedList[]
+
+for(int i=0;i<v;i++)
+arr[i]=new LinkedList<>();
+}
+
+
+void addEdge(int a,int b)
+{
+arr[a].add(b);
+}
+
+
+void Print(LinkedList arr[])
+{
+for(LinkedList i:arr)
+System.out.println(i);
+}
+
+
+void BFS(int s)
+{
+System.out.println("LEVEL ORDER TRAVERSAL:-");
+
+boolean visited[]=new boolean[v];//VISITED_ARRAY
+Queue<Integer> q=new LinkedList<>();
+q.add(s);
+visited[s]=true;
+
+while(!q.isEmpty())
+{
+int temp=q.poll();
+System.out.print(temp+" ");
+
+for(Integer x:arr[temp])
+{
+if(!visited[x])
+{
+q.add(x);
+visited[x]=true;
+}
+}
+
+}
+System.out.println();
+}
+
+
+public static void main(String[] args)
+{
+Scanner sc=new Scanner(System.in);
+System.out.print("SCAN NO. OF VERTICES: ");
+Graph4 g=new Graph4(sc.nextInt());
+
+System.out.print("SCAN NO. OF EDGES: ");
+int e=sc.nextInt();
+
+for(int i=0;i<e;i++)
+{
+System.out.print("SCAN VERTEX-1 AND VERTEX-2 TO CREATE THEIR CONNECTION: ");
+g.addEdge(sc.nextInt(),sc.nextInt());
+}
+
+g.Print(g.arr);
+
+System.out.print("SCAN STARTING NODE FOR BFS: ");
+g.BFS(sc.nextInt());
+}
+}
+/*
+BFS OF GRAPH USING LINKEDLIST
+*/
