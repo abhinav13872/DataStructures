@@ -33,7 +33,7 @@ System.out.println(i);
 
 void BFS(int s)
 {
-System.out.println("LEVEL ORDER TRAVERSAL:-");
+System.out.println("#BFS(BREADTH_FIRST_SEARCH):-");
 
 boolean visited[]=new boolean[v];//VISITED_ARRAY
 Queue<Integer> q=new LinkedList<>();
@@ -59,6 +59,28 @@ System.out.println();
 }
 
 
+void DFS(int s)
+{
+boolean visited[]=new boolean[v];
+System.out.println("#DFS(DEPTH_FIRST_SEARCH):- ");
+DFSUtil(s,visited);
+System.out.println();
+}
+
+
+void DFSUtil(int s,boolean visited[])
+{
+System.out.print(s+" ");
+visited[s]=true;
+
+for(Integer x:arr[s])
+{
+if(!visited[x])
+DFSUtil(x,visited);
+}
+}
+
+
 public static void main(String[] args)
 {
 Scanner sc=new Scanner(System.in);
@@ -78,8 +100,14 @@ g.Print(g.arr);
 
 System.out.print("SCAN STARTING NODE FOR BFS: ");
 g.BFS(sc.nextInt());
+
+System.out.print("SCAN STARTING NODE FOR DFS: ");
+g.DFS(sc.nextInt());
 }
 }
 /*
-BFS OF GRAPH USING LINKEDLIST
+GRAPH CREATED USING ARRAYS AND LINKEDLIST
+
+=>BFS(BREADTH_FIRST_SEARCH)
+=>DFS(DEPTH_FIRST_SEARCH)
 */
