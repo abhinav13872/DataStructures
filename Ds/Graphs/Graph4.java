@@ -21,8 +21,9 @@ arr[i]=new LinkedList<>();
 void addEdge(int a,int b)
 {
 arr[a].add(b);
+arr[b].add(a);
+//NOW GRAPH IS BI-DIRECTIONAL
 }
-
 
 void Print(LinkedList arr[])
 {
@@ -81,6 +82,26 @@ DFSUtil(x,visited);
 }
 
 
+void DFSOverAll()
+{
+System.out.println("#DFS-OVERALL:- ");
+boolean visited[]=new boolean[v];
+int count=0;//COUNT_OF_COMPONENTS
+
+for(int i=0;i<v;i++)
+{
+if(!visited[i])
+{
+count++;
+System.out.print("COMPONENT-"+count+": ");
+DFSUtil(i,visited);
+System.out.println();//LINE_SPACE_FOR_EVERY_COMPONENT
+}
+}
+System.out.println("NO. OF COMPONENTS: "+count);
+}
+
+
 public static void main(String[] args)
 {
 Scanner sc=new Scanner(System.in);
@@ -103,11 +124,13 @@ g.BFS(sc.nextInt());
 
 System.out.print("SCAN STARTING NODE FOR DFS: ");
 g.DFS(sc.nextInt());
+
+g.DFSOverAll();
 }
 }
 /*
 GRAPH CREATED USING ARRAYS AND LINKEDLIST
 
-=>BFS(BREADTH_FIRST_SEARCH)
-=>DFS(DEPTH_FIRST_SEARCH)
+=>BFS(BREADTH_FIRST_SEARCH) ->FOR CONNECTED GRAPH
+=>DFS(DEPTH_FIRST_SEARCH) ->FOR CONNECTED AS WELL AS DISCONNECTED GRAPH
 */
