@@ -19,7 +19,7 @@ Scanner sc=new Scanner(System.in);
 
 if(r<0 || r>=R || c<0 || c>=C)						//CASE OF INVALID ROW/COLUMN SCANNED
 {
-System.out.print("ENTER VALID ROW AND COLUMN FOR "+ (count%2 !=0 ? PLAYER_1 :  PLAYER_2) + ": ");
+System.out.print("#ENTER VALID ROW AND COLUMN FOR "+ (count%2 !=0 ? PLAYER_1 :  PLAYER_2) + ": ");
 r=sc.nextInt();								
 c=sc.nextInt();
 }
@@ -29,14 +29,14 @@ if(arr[r][c] != ' ')								//IF ALREADY FILLED
 {
 if(count%2 != 0)
 {
-System.out.print("ENTER VALID ROW AND COLUMN FOR  "+PLAYER_1+": ");
+System.out.print("#ENTER VALID ROW AND COLUMN FOR  "+PLAYER_1+": ");
 input(sc.nextInt(),sc.nextInt());
 }
 else
 {
 if(flag!=1)
 {
-System.out.print("ENTER VALID ROW AND COLUMN FOR "+ (count%2 !=0 ? PLAYER_1 :  PLAYER_2) + ": ");
+System.out.print("#ENTER VALID ROW AND COLUMN FOR "+ (count%2 !=0 ? PLAYER_1 :  PLAYER_2) + ": ");
 input(sc.nextInt(),sc.nextInt());						//IF PLAYER_2 IS HUMAN
 }
 else
@@ -285,7 +285,7 @@ else
 PLAYER_2="COMPUTER";
 }
 
-System.out.println("TIC-TAC-TOE: "+PLAYER_1+" Vs "+PLAYER_2);
+System.out.println("\n\"TIC-TAC-TOE: "+PLAYER_1+" Vs "+PLAYER_2+"\"\n");
 
 for(int i=1;i<=9;i++)
 {
