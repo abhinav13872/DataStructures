@@ -48,7 +48,7 @@ list.head.next.next.next.next.next.next=new Node(sc.nextInt());
 list.head.next.next.next.next.next.next.next=new Node(sc.nextInt());
 */
 list.Print(list.head);
-
+/*
 System.out.print("ENTER THE DATA TO FOR INSERTION AT BEGINNING: ");
 list.head=list.insertAtBegin(list.head,sc.nextInt());
 list.Print(list.head);
@@ -56,7 +56,7 @@ list.Print(list.head);
 System.out.print("ENTER THE DATA TO FOR INSERTION AT END: ");
 list.head=list.insertAtEnd(list.head,sc.nextInt());
 list.Print(list.head);
-
+*/
 System.out.println("#INSERTION BEFORE VALUE:-");
 System.out.print("ENTER THE DATA AND VALUE: ");
 list.head=list.insertBefore(list.head,sc.nextInt(),sc.nextInt());
@@ -66,7 +66,7 @@ System.out.println("#INSERTION AFTER VALUE:-");
 System.out.print("ENTER THE DATA AND VALUE: ");
 list.head=list.insertAfter(list.head,sc.nextInt(),sc.nextInt());
 list.Print(list.head);
-
+/*
 System.out.print("ENTER THE DATA FOR INSERTION AT MID POSITION: ");
 list.head=list.insertAtMid(list.head,sc.nextInt());
 list.Print(list.head);
@@ -83,13 +83,13 @@ System.out.println("DELETION AT END:- ");
 list.head=list.deletionAtEnd(list.head);
 list.Print(list.head);
 
-System.out.print("ENTER POSITION OF AN ELEMENT FOR DELETION: ");
+System.out.print("ENTER POSITION FOR DELETION: ");
 list.head=list.deleteAt(list.head,sc.nextInt());
 list.Print(list.head);
 
 System.out.print("ENTER THE VALUE FOR DELETION: ");
 list.head=list.delete(list.head,sc.nextInt());
-list.Print(list.head);
+list.Print(list.head);*/
 }
 
 
@@ -124,29 +124,44 @@ return head;
 }
 
 
-private Node insertBefore(Node head,int data,int value)			//INSERTION BEFORE A GIVEN VALUE
+private Node insertBefore(Node head,int data,int value)		//INSERTION BEFORE A GIVEN VALUE
+{
+if(head != null)
 {
 Node ptr=head;
 Node preptr=ptr;
 
-while(ptr != null && ptr.data != value)
+while(ptr != null && ptr.next != null && ptr.data != value)
 {
 preptr=ptr;
 ptr=ptr.next;
 }
 
 Node temp=new Node(data);
+
+if(ptr == preptr)
+{
+temp.next=head;
+return temp;
+}
+
 temp.next=ptr;
 preptr.next=temp;
 return head;
 }
 
+head=new Node(data);
+return head;
+}
 
-private Node insertAfter(Node head,int data,int value)			//INSERTION AFTER A GIVEN VALUE
+
+private Node insertAfter(Node head,int data,int value)		//INSERTION AFTER A GIVEN VALUE
+{
+if(head != null)
 {
 Node ptr=head;
 
-while(ptr.next != null && ptr.data != value)
+while(ptr != null && ptr.next != null && ptr.data != value)
 ptr=ptr.next;
 
 Node temp=new Node(data);
@@ -155,14 +170,18 @@ ptr.next=temp;
 return head;
 }
 
+head=new Node(data);
+return head;
+}
 
-private Node insertAtMid(Node head,int data)					//INSERTION AT MID POSITION
+
+private Node insertAtMid(Node head,int data)				//INSERTION AT MID POSITION
 {
 
 if(head != null)
 {
 Node tail=head;
-int counter=1;									//COUNT OF NODES
+int counter=1;								//COUNT OF NODES
 while(tail.next != null)
 {
 tail=tail.next;
@@ -170,7 +189,7 @@ tail=tail.next;
 }
 
 tail=head;
-int count=1;									//COUNT OF POSITION
+int count=1;								//COUNT OF POSITION
 while(tail != null && tail.next != null && count < counter/2)
 {
 tail=tail.next;
@@ -188,8 +207,13 @@ return head;
 }
 
 
-private Node insertAt(Node head,int data,int x)				//INSERTION AT GIVEN POSITION
+private Node insertAt(Node head,int data,int x)			//INSERTION AT GIVEN POSITION
 {
+if(x < 1)
+{
+System.out.println("#INVALID POSTION!!");
+return head;
+}
 
 if(head != null)
 {
@@ -205,7 +229,7 @@ ptr=ptr.next;
 ++counter;
 }
 
-if(preptr == ptr)								//CASE OF INSERTION AT 1ST POSITION
+if(preptr == ptr)							//CASE OF INSERTION AT 1ST POSITION
 {
 temp.next=head;
 return temp;
@@ -216,12 +240,12 @@ preptr.next=temp;
 return head;
 }
 
-head=new Node(data);								//CASE OF EMPTY LINKEDLIST
+head=new Node(data);							//CASE OF EMPTY LINKEDLIST
 return head;
 }
 
 
-private Node deletionAtBegin(Node head)					//DELETION AT BEGINNING
+private Node deletionAtBegin(Node head)				//DELETION AT BEGINNING
 {
 if(head != null)
 return head.next;
@@ -231,7 +255,7 @@ return head;
 }
 
 
-private Node deletionAtEnd(Node head)						//DELETION AT END
+private Node deletionAtEnd(Node head)					//DELETION AT END
 {
 Node ptr=head;
 Node preptr=head;
@@ -252,8 +276,14 @@ return head;
 }
 
 
-private Node deleteAt(Node head,int x)					//DELETION AT GIVEN POSITION
+private Node deleteAt(Node head,int x)				//DELETION AT GIVEN POSITION
 {
+if(x < 1)
+{
+System.out.println("#INVALID POSTION!!");
+return head;
+}
+
 if(head != null)
 {
 Node ptr=head;
@@ -267,17 +297,20 @@ ptr=ptr.next;
 ++count;
 }
 
-if(preptr == ptr) return head.next;
+if(preptr == ptr) return head.next;					//CASE OF DELETION AT 1ST POSITION
+
+if(count != x) return head;						//CASE OF INVALID POSITION
 
 preptr.next=ptr.next;
 return head;
 }
+
 System.out.println("#CASE OF UNDERFLOW!!");
 return head;
 }
 
 
-private Node delete(Node head,int value)					//DELETION BY VALUE
+private Node delete(Node head,int value)				//DELETION BY VALUE
 {
 if(head != null)
 {
@@ -290,9 +323,9 @@ preptr=ptr;
 ptr=ptr.next;
 }
 
-if(ptr == preptr) return head.next;						//CASE OF DELETION OF 1ST ELEMENT
+if(ptr == preptr) return head.next;					//CASE OF DELETION OF 1ST ELEMENT
 
-if(ptr != preptr && ptr.data != value) return head;				//CASE OF NO MATCHED DATA FOUND
+if(ptr != preptr && ptr.data != value) return head;			//CASE OF NO MATCH FOUND
 
 preptr.next=ptr.next;
 return head;
@@ -302,7 +335,7 @@ return head;
 }
 
 
-private void Print(Node head)							//PRINT
+private void Print(Node head)						//PRINT
 {
 System.out.print("LINKEDLIST: ");
 while(head != null)
