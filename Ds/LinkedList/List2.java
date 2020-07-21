@@ -1,5 +1,6 @@
 package LINKEDLIST;
 import java.util.*;
+
 public class List2
 {
 public static void main(String[] args)
@@ -12,29 +13,35 @@ head.next.next=new Node(3);
 System.out.print("LinkedList: ");
 Print(head);//PRINT FUNCTION
 
-//head=deleteAtStart(head);//DELETION OF NODE FROM BEGINNING
-//deleteAtEnd(head);//DELETION OF NODE AT END
+//head=deleteAtStart(head);							//DELETION OF NODE FROM BEGINNING
+//deleteAtEnd(head);								//DELETION OF NODE AT END
 System.out.print("Scan the Position for Insertion: ");
-int p=sc.nextInt();//SCANS THE POSITION(FOR INSERTION/DELETION OF NODE)
+int p=sc.nextInt();								//SCANS THE POSITION(FOR INSERTION/DELETION OF NODE)
 System.out.print("Scan the Element for Insertion: ");
 int d=sc.nextInt();
-head=insertNode(head,d,p);//INSERTION AT Nth POSITION
+head=insertNode(head,d,p);
 
 System.out.print("LinkedList: ");
-Print(head);//PRINT FUNCTION
+Print(head);
 
 System.out.print("Scan the Position for Deletion: ");
-int p1=sc.nextInt();//SCANS THE POSITION(FOR INSERTION/DELETION OF NODE)
-head=deleteNode(head,p1);//DELETION AT Nth POSITION
+int p1=sc.nextInt();								//SCANS THE POSITION(FOR INSERTION/DELETION OF NODE)
+head=deleteNode(head,p1);							//DELETION AT Nth POSITION
 
 System.out.print("LinkedList: ");
-Print(head);//PRINT FUNCTION
+Print(head);
 }
+
+
+
 public static Node deleteAtStart(Node head)
 {
 head=head.next;
 return head;
 }
+
+
+
 public static void deleteAtEnd(Node head)
 {
 Node temp=head;
@@ -45,7 +52,10 @@ temp=temp.next;
 temp.next=null;
 //System.out.println(temp.data);
 }
-public static Node insertNode(Node head,int data,int p)
+
+
+
+public static Node insertNode(Node head,int data,int p)			//INSERTION AT Nth POSITION
 {
 if(p==1)
 {
@@ -66,6 +76,8 @@ temp1.next=temp.next;
 temp.next=temp1;
 return head;
 }
+
+
 public static Node deleteNode(Node head,int p)
 {
 if(p==1)
@@ -82,7 +94,9 @@ l++;
 temp.next=temp.next.next;
 return head;
 }
-public static void Print(Node head)
+
+
+public static void Print(Node head)						//PRINT FUNCTION
 {
 while(head!=null)
 {
@@ -92,6 +106,8 @@ head=head.next;
 System.out.println();
 }
 }
+
+
 class Node
 {
 int data;

@@ -1,90 +1,330 @@
 package LINKEDLIST;
-import java.util.*;
+import java.util.Scanner;
+
 public class List1
 {
+Node head;									//START NODE
+
+public List1()
+{}
+
+public List1(int data)
+{
+if(head == null)
+head=new Node(data);
+}
+
 public static void main(String[] args)
 {
-/*
-AVOID USING REFERANCE OF HEAD SINCE NULL REACH KRNE 
-KE BAAD WE CANT PRINT AGAIN BCOZ HEAD IS NULL ATLAST!!
-Node head=new Node(1);//STEP-1
-head.next=new Node(2);
-head.next.next=new Node(3);
-head.next.next.next=new Node(4);
-while(head!=null)
-{
-System.out.println(head.data);
-head=head.next;
-}
-while(head!=null)
-{
-System.out.println(head.data);
-head=head.next;
-}*/
 Scanner sc=new Scanner(System.in);
-Node head=new Node(1);
-Node temp=head;//STORING REFERANCE OF HEAD
-temp.next=new Node(2);
-temp.next.next=new Node(3);
-temp.next.next.next=new Node(4);
 
-System.out.print("LinkedList: ");
-Print(head);//PRINT FUNCTION
+System.out.print("ENTER THE NO. OF ELEMENTS IN A LINKEDLIST: ");
+int n=sc.nextInt();
 
-System.out.print("scan DATA to be inserted at START of LinkedList: ");
-int n1=sc.nextInt();
-head=insertAtHead(head,n1);//INSERTION AT START
-temp=head;//UPDATION IN REFERANCE OF HEAD
-
-System.out.print("LinkedList: ");
-Print(head);//PRINT FUNCTION
-
-System.out.print("scan DATA to be inserted at End of LinkedList: ");
-int n2=sc.nextInt();
-insertAtEnd(head,n2);//INSERTION AT END
-
-System.out.print("LinkedList: ");
-Print(head);//PRINT FUNCTION
-}
-public static void Print(Node head)
+List1 list=null;
+if(n > 0)
 {
-while(head!=null)
+System.out.print("SCAN LINKEDLIST ELEMENTS: ");
+list=new List1(sc.nextInt());
+
+Node temp=list.head;
+while(n-- != 1)
+{
+temp.next=new Node(sc.nextInt());
+temp=temp.next;
+}
+}
+else
+{
+list=new List1();
+}
+
+/*list.head.next=new Node(sc.nextInt());
+list.head.next.next=new Node(sc.nextInt());
+list.head.next.next.next=new Node(sc.nextInt());
+list.head.next.next.next.next=new Node(sc.nextInt());
+list.head.next.next.next.next.next=new Node(sc.nextInt());
+list.head.next.next.next.next.next.next=new Node(sc.nextInt());
+list.head.next.next.next.next.next.next.next=new Node(sc.nextInt());
+*/
+list.Print(list.head);
+
+System.out.print("ENTER THE DATA TO FOR INSERTION AT BEGINNING: ");
+list.head=list.insertAtBegin(list.head,sc.nextInt());
+list.Print(list.head);
+
+System.out.print("ENTER THE DATA TO FOR INSERTION AT END: ");
+list.head=list.insertAtEnd(list.head,sc.nextInt());
+list.Print(list.head);
+
+System.out.println("#INSERTION BEFORE VALUE:-");
+System.out.print("ENTER THE DATA AND VALUE: ");
+list.head=list.insertBefore(list.head,sc.nextInt(),sc.nextInt());
+list.Print(list.head);
+
+System.out.println("#INSERTION AFTER VALUE:-");
+System.out.print("ENTER THE DATA AND VALUE: ");
+list.head=list.insertAfter(list.head,sc.nextInt(),sc.nextInt());
+list.Print(list.head);
+
+System.out.print("ENTER THE DATA FOR INSERTION AT MID POSITION: ");
+list.head=list.insertAtMid(list.head,sc.nextInt());
+list.Print(list.head);
+
+System.out.print("ENTER THE DATA AND POSITION FOR INSERTION: ");
+list.head=list.insertAt(list.head,sc.nextInt(),sc.nextInt());
+list.Print(list.head);
+
+System.out.println("DELETION AT BEGINNING:- ");
+list.head=list.deletionAtBegin(list.head);
+list.Print(list.head);
+
+System.out.println("DELETION AT END:- ");
+list.head=list.deletionAtEnd(list.head);
+list.Print(list.head);
+
+System.out.print("ENTER POSITION OF AN ELEMENT FOR DELETION: ");
+list.head=list.deleteAt(list.head,sc.nextInt());
+list.Print(list.head);
+
+System.out.print("ENTER THE VALUE FOR DELETION: ");
+list.head=list.delete(list.head,sc.nextInt());
+list.Print(list.head);
+}
+
+
+
+private Node insertAtBegin(Node head,int data)			//INSERTION AT BEGINNING
+{
+if(head != null)
+{
+Node temp=new Node(data);
+temp.next=head;
+return temp;
+}
+
+head=new Node(data);
+return head;
+}
+
+
+private Node insertAtEnd(Node head,int data)				//INSERTION AT END
+{
+if(head != null)
+{
+Node tail=head;
+while(tail != null && tail.next != null) tail=tail.next;
+
+Node temp=new Node(data);
+tail.next=temp;
+return head;
+}
+head=new Node(data);
+return head;
+}
+
+
+private Node insertBefore(Node head,int data,int value)			//INSERTION BEFORE A GIVEN VALUE
+{
+Node ptr=head;
+Node preptr=ptr;
+
+while(ptr != null && ptr.data != value)
+{
+preptr=ptr;
+ptr=ptr.next;
+}
+
+Node temp=new Node(data);
+temp.next=ptr;
+preptr.next=temp;
+return head;
+}
+
+
+private Node insertAfter(Node head,int data,int value)			//INSERTION AFTER A GIVEN VALUE
+{
+Node ptr=head;
+
+while(ptr.next != null && ptr.data != value)
+ptr=ptr.next;
+
+Node temp=new Node(data);
+temp.next=ptr.next;
+ptr.next=temp;
+return head;
+}
+
+
+private Node insertAtMid(Node head,int data)					//INSERTION AT MID POSITION
+{
+
+if(head != null)
+{
+Node tail=head;
+int counter=1;									//COUNT OF NODES
+while(tail.next != null)
+{
+tail=tail.next;
+++counter;
+}
+
+tail=head;
+int count=1;									//COUNT OF POSITION
+while(tail != null && tail.next != null && count < counter/2)
+{
+tail=tail.next;
+++count;
+}
+
+Node temp=new Node(data);
+temp.next=tail.next;
+tail.next=temp;
+return head;
+}
+
+head=new Node(data);
+return head;
+}
+
+
+private Node insertAt(Node head,int data,int x)				//INSERTION AT GIVEN POSITION
+{
+
+if(head != null)
+{
+int counter=1;
+Node ptr=head;
+Node preptr=head;
+Node temp=new Node(data);
+
+while(ptr != null && counter < x)
+{
+preptr=ptr;
+ptr=ptr.next;
+++counter;
+}
+
+if(preptr == ptr)								//CASE OF INSERTION AT 1ST POSITION
+{
+temp.next=head;
+return temp;
+}
+
+temp.next=preptr.next;
+preptr.next=temp;
+return head;
+}
+
+head=new Node(data);								//CASE OF EMPTY LINKEDLIST
+return head;
+}
+
+
+private Node deletionAtBegin(Node head)					//DELETION AT BEGINNING
+{
+if(head != null)
+return head.next;
+
+System.out.println("#CASE OF UNDERFLOW!!");
+return head;
+}
+
+
+private Node deletionAtEnd(Node head)						//DELETION AT END
+{
+Node ptr=head;
+Node preptr=head;
+
+if(head != null)
+{
+while(ptr.next != null)
+{
+preptr=ptr;
+ptr=ptr.next;
+}
+
+preptr.next=null;
+return head;
+}
+System.out.println("#CASE OF UNDERFLOW!!");
+return head;
+}
+
+
+private Node deleteAt(Node head,int x)					//DELETION AT GIVEN POSITION
+{
+if(head != null)
+{
+Node ptr=head;
+Node preptr=head;
+int count=1;
+
+while(ptr.next != null && count < x)
+{
+preptr=ptr;
+ptr=ptr.next;
+++count;
+}
+
+if(preptr == ptr) return head.next;
+
+preptr.next=ptr.next;
+return head;
+}
+System.out.println("#CASE OF UNDERFLOW!!");
+return head;
+}
+
+
+private Node delete(Node head,int value)					//DELETION BY VALUE
+{
+if(head != null)
+{
+Node ptr=head;
+Node preptr=head;
+
+while(ptr.next != null && ptr.data != value)
+{
+preptr=ptr;
+ptr=ptr.next;
+}
+
+if(ptr == preptr) return head.next;						//CASE OF DELETION OF 1ST ELEMENT
+
+if(ptr != preptr && ptr.data != value) return head;				//CASE OF NO MATCHED DATA FOUND
+
+preptr.next=ptr.next;
+return head;
+}
+System.out.println("#CASE OF UNDERFLOW!!");
+return head;
+}
+
+
+private void Print(Node head)							//PRINT
+{
+System.out.print("LINKEDLIST: ");
+while(head != null)
 {
 System.out.print(head.data+" ");
 head=head.next;
 }
-System.out.println();
-}
-static Node insertAtHead(Node head,int data)
-{
-Node temp1=new Node(data);
-temp1.next=head;
-head=temp1;
-return head;
-}
-static void insertAtEnd(Node head,int data)
-{
-Node temp=new Node(data);
-Node last=head;
-while(last.next!=null)
-{
-last=last.next;
-}
-last.next=temp;
+System.out.println("\n");
 }
 }
+
+
+
 class Node
 {
-int data;//DATA
-Node next;//NEXT REFERANCE
-static int count;
+int data;
+Node next;
+
 public Node(int data)
 {
 this.data=data;
 this.next=null;
-count++;
 }
-int getCount()
-{return count;}
-
 }
+//OPERATIONS IN A LINKEDLIST
