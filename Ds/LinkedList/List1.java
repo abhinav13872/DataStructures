@@ -48,7 +48,7 @@ list.head.next.next.next.next.next.next=new Node(sc.nextInt());
 list.head.next.next.next.next.next.next.next=new Node(sc.nextInt());
 */
 list.Print(list.head);
-/*
+
 System.out.print("ENTER THE DATA TO FOR INSERTION AT BEGINNING: ");
 list.head=list.insertAtBegin(list.head,sc.nextInt());
 list.Print(list.head);
@@ -56,7 +56,7 @@ list.Print(list.head);
 System.out.print("ENTER THE DATA TO FOR INSERTION AT END: ");
 list.head=list.insertAtEnd(list.head,sc.nextInt());
 list.Print(list.head);
-*/
+
 System.out.println("#INSERTION BEFORE VALUE:-");
 System.out.print("ENTER THE DATA AND VALUE: ");
 list.head=list.insertBefore(list.head,sc.nextInt(),sc.nextInt());
@@ -66,7 +66,7 @@ System.out.println("#INSERTION AFTER VALUE:-");
 System.out.print("ENTER THE DATA AND VALUE: ");
 list.head=list.insertAfter(list.head,sc.nextInt(),sc.nextInt());
 list.Print(list.head);
-/*
+
 System.out.print("ENTER THE DATA FOR INSERTION AT MID POSITION: ");
 list.head=list.insertAtMid(list.head,sc.nextInt());
 list.Print(list.head);
@@ -89,7 +89,11 @@ list.Print(list.head);
 
 System.out.print("ENTER THE VALUE FOR DELETION: ");
 list.head=list.delete(list.head,sc.nextInt());
-list.Print(list.head);*/
+list.Print(list.head);
+
+System.out.println("#REVERSING LINKEDLIST:- ");
+list.head=list.reverseLL(list.head);
+list.Print(list.head);
 }
 
 
@@ -108,6 +112,7 @@ return head;
 }
 
 
+
 private Node insertAtEnd(Node head,int data)				//INSERTION AT END
 {
 if(head != null)
@@ -122,6 +127,7 @@ return head;
 head=new Node(data);
 return head;
 }
+
 
 
 private Node insertBefore(Node head,int data,int value)		//INSERTION BEFORE A GIVEN VALUE
@@ -155,6 +161,7 @@ return head;
 }
 
 
+
 private Node insertAfter(Node head,int data,int value)		//INSERTION AFTER A GIVEN VALUE
 {
 if(head != null)
@@ -173,6 +180,7 @@ return head;
 head=new Node(data);
 return head;
 }
+
 
 
 private Node insertAtMid(Node head,int data)				//INSERTION AT MID POSITION
@@ -205,6 +213,7 @@ return head;
 head=new Node(data);
 return head;
 }
+
 
 
 private Node insertAt(Node head,int data,int x)			//INSERTION AT GIVEN POSITION
@@ -245,6 +254,7 @@ return head;
 }
 
 
+
 private Node deletionAtBegin(Node head)				//DELETION AT BEGINNING
 {
 if(head != null)
@@ -253,6 +263,7 @@ return head.next;
 System.out.println("#CASE OF UNDERFLOW!!");
 return head;
 }
+
 
 
 private Node deletionAtEnd(Node head)					//DELETION AT END
@@ -274,6 +285,7 @@ return head;
 System.out.println("#CASE OF UNDERFLOW!!");
 return head;
 }
+
 
 
 private Node deleteAt(Node head,int x)				//DELETION AT GIVEN POSITION
@@ -310,6 +322,7 @@ return head;
 }
 
 
+
 private Node delete(Node head,int value)				//DELETION BY VALUE
 {
 if(head != null)
@@ -335,7 +348,62 @@ return head;
 }
 
 
-private void Print(Node head)						//PRINT
+
+//#METHOD-1 TO REVERSE LINKEDLIST:-
+private Node reverseLL(Node head)					//REVERSE LINKEDLIST
+{
+if(head != null)
+{
+Node prehead=head;							//TO BREAK LINK WITH PREVIOUS ELEMENT CONSUMING MEMORY
+Node ptr=null;
+Node preptr=ptr;
+
+while(head != null)
+{
+preptr=ptr;								//OLD REFERANCE
+ptr=insertAtEnd(null,head.data);
+ptr.next=preptr;							//LINKING
+
+prehead=head;
+head=head.next;
+prehead.next=null;
+}
+return ptr;
+}
+
+System.out.println("#EMPTY LINKEDLIST!!");
+return head;
+}
+
+
+
+/*
+//#METHOD-2 TO REVERSE LINKEDLIST:-
+
+private Node reverseLL(Node head)					//REVERSE LINKEDLIST
+{
+if(head != null)
+{
+Node ptr=null;
+Node prehead=head;							//TO BREAK LINK WITH PREVIOUS ELEMENT CONSUMING MEMORY
+
+while(head != null)
+{
+ptr=insertAtBegin(ptr,head.data);
+
+prehead=head;
+head=head.next;
+prehead.next=null;
+}
+return ptr;								//NEW HEAD
+}
+
+System.out.println("#NOTHING TO ROTATE -> EMPTY LINKEDLIST!!");
+return head;
+}*/
+
+
+private void Print(Node head)						//PRINT METHOD
 {
 System.out.print("LINKEDLIST: ");
 while(head != null)

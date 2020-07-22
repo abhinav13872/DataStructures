@@ -1,120 +1,82 @@
 package LINKEDLIST;
-import java.util.*;
+import java.util.Scanner;
 
 public class List2
 {
+Node head;									//START NODE
+
+public List2()
+{}
+
+public List2(int data)
+{
+if(head == null)
+head=new Node(data);
+}
+
 public static void main(String[] args)
 {
 Scanner sc=new Scanner(System.in);
-Node head=new Node(1);
-head.next=new Node(2);
-head.next.next=new Node(3);
 
-System.out.print("LinkedList: ");
-Print(head);//PRINT FUNCTION
+System.out.print("ENTER THE NO. OF ELEMENTS IN A LINKEDLIST: ");
+int n=sc.nextInt();
 
-//head=deleteAtStart(head);							//DELETION OF NODE FROM BEGINNING
-//deleteAtEnd(head);								//DELETION OF NODE AT END
-System.out.print("Scan the Position for Insertion: ");
-int p=sc.nextInt();								//SCANS THE POSITION(FOR INSERTION/DELETION OF NODE)
-System.out.print("Scan the Element for Insertion: ");
-int d=sc.nextInt();
-head=insertNode(head,d,p);
-
-System.out.print("LinkedList: ");
-Print(head);
-
-System.out.print("Scan the Position for Deletion: ");
-int p1=sc.nextInt();								//SCANS THE POSITION(FOR INSERTION/DELETION OF NODE)
-head=deleteNode(head,p1);							//DELETION AT Nth POSITION
-
-System.out.print("LinkedList: ");
-Print(head);
-}
-
-
-
-public static Node deleteAtStart(Node head)
+List2 list=null;
+if(n > 0)
 {
-head=head.next;
-return head;
-}
+System.out.print("SCAN LINKEDLIST ELEMENTS: ");
+list=new List2(sc.nextInt());
 
-
-
-public static void deleteAtEnd(Node head)
+Node temp=list.head;
+while(n-- != 1)
 {
-Node temp=head;
-while(temp.next.next!=null)
-{
+temp.next=new Node(sc.nextInt());
 temp=temp.next;
 }
-temp.next=null;
-//System.out.println(temp.data);
+}
+else list=new List2();
+
+System.out.println("MIDDLE ELEMENT IS: "+ list.midElement(list.head));
 }
 
 
+private int midElement(Node head)					//MIDDLE ELEMENT
+{
+Node sptr=head;
+Node fptr=head;
 
-public static Node insertNode(Node head,int data,int p)			//INSERTION AT Nth POSITION
+while(fptr != null && fptr.next != null)
 {
-if(p==1)
-{
-Node temp1=new Node(data);
-temp1.next=head;
-return temp1;
+fptr=fptr.next.next;
+sptr=sptr.next;
 }
-Node temp1=new Node(data);
-Node temp=head;
-int l=0;
-while(l<p-2)
-{
-temp=temp.next;
-l++;
-}
-//System.out.println(temp.data);
-temp1.next=temp.next;
-temp.next=temp1;
-return head;
+return sptr.data;
 }
 
 
-public static Node deleteNode(Node head,int p)
+private void Print(Node head)						//PRINT METHOD
 {
-if(p==1)
-{
-return head.next;//NEW HEAD
-}
-int l=0;
-Node temp=head;
-while(l<p-2)
-{
-temp=temp.next;
-l++;
-}
-temp.next=temp.next.next;
-return head;
-}
-
-
-public static void Print(Node head)						//PRINT FUNCTION
-{
-while(head!=null)
+System.out.print("LINKEDLIST: ");
+while(head != null)
 {
 System.out.print(head.data+" ");
 head=head.next;
 }
-System.out.println();
+System.out.println("\n");
 }
 }
+
 
 
 class Node
 {
 int data;
 Node next;
+
 public Node(int data)
 {
 this.data=data;
 this.next=null;
 }
 }
+//MIDDLE ELEMENT IN A LINKEDLIST (CEIL VALUE)
