@@ -48,6 +48,7 @@ list.head.next.next.next.next.next.next=new Node(sc.nextInt());
 list.head.next.next.next.next.next.next.next=new Node(sc.nextInt());
 */
 list.Print(list.head);
+System.out.println("#LINKEDLIST IS IN NON-DECREASING ORDER: "+list.check(list.head));
 
 System.out.print("ENTER THE DATA TO FOR INSERTION AT BEGINNING: ");
 list.head=list.insertAtBegin(list.head,sc.nextInt());
@@ -401,6 +402,12 @@ return ptr;								//NEW HEAD
 System.out.println("#NOTHING TO REVERSE -> EMPTY LINKEDLIST!!");
 return head;
 }*/
+
+
+private boolean check(Node p)						//CHECKS LINKEDLIST IS IN NON-DECREASING FORMAT OR NOT...
+{
+return ((p == null) || (p.next == null) || (p.data <= p.next.data && check(p.next)));
+}
 
 
 private void Print(Node head)						//PRINT METHOD

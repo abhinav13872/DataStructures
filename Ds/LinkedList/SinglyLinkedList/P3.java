@@ -18,7 +18,6 @@ static Node shiftSmallLarge(Node org)
 {
 if(org != null)
 {
-System.out.println("-----------------");
 Node HEAD=org;
 int min=99999;							//MIN IN A LINKEDLIST
 int max=-99999;						//MAX IN A LINKEDLIST

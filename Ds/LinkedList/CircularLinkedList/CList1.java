@@ -435,12 +435,12 @@ private void Print(Node head)							//PRINT METHOD
 System.out.print("CIRCULAR_LINKEDLIST: ");
 Node tail=head;
 
-if(head != null) System.out.print(head.data+" ");
-while(tail != null && tail.next != head)
+do
 {
-tail=tail.next;
 System.out.print(tail.data+" ");
+tail=tail.next;
 }
+while(tail != head);
 System.out.println("\n");
 }
 }
