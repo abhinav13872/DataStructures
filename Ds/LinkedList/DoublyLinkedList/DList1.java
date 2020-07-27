@@ -97,24 +97,20 @@ if(head != null)
 {
 Node fptr=head;								//FAST-POINTER
 Node sptr=head;								//SLOW-POINTER
-Node presptr=sptr;
+Node temp=new Node(data);							//NODE TO BE INSERTED
 
 while(fptr != null && fptr.next != null)
 {
-presptr=sptr;
 fptr=fptr.next.next;
 sptr=sptr.next;
 }
 
-Node temp=new Node(data);
-
 if(sptr.next != null)								//CASE OF MULTIPLE NODES
 {
-temp.next=presptr.next;
-presptr.next.prev=temp;
-
-presptr.next=temp;
-temp.prev=presptr;
+temp.next=sptr;
+temp.prev=sptr.prev;
+sptr.prev.next=temp;
+sptr.prev=temp;
 return head;
 }
 
@@ -132,15 +128,12 @@ private static Node insertBefore(Node head,int data,int value)
 if(head != null)
 {
 Node ptr=head;
-Node preptr=head;
+Node temp=new Node(data);							//NODE TO BE INSERTED
 
 while(ptr.next != null && ptr.data != value)
 {
-preptr=ptr;
 ptr=ptr.next;
 }
-
-Node temp=new Node(data);							//NODE TO BE INSERTED
 
 if(ptr.data == head.data)							//INSERTION AT HEAD
 {
@@ -149,7 +142,7 @@ head.prev=temp;
 return temp;
 }
 
-if(ptr.data != value)								//CASE OF NO MATCH FOUND
+if(ptr.data != value)								//CASE OF NO MATCH OF GIVEN VALUE FOUND
 {
 ptr.next=temp;
 temp.prev=ptr;
@@ -157,10 +150,9 @@ return head;
 }
 
 temp.next=ptr;
+ptr.prev.next=temp;
+temp.prev=ptr.prev;
 ptr.prev=temp;
-
-preptr.next=temp;
-temp.prev=preptr;
 return head;
 }
 head=new Node(data);
@@ -173,10 +165,9 @@ private static Node insertAfter(Node head,int data,int value)
 if(head != null)
 {
 Node ptr=head;
+Node temp=new Node(data);							//NODE TO BE INSERTED
 
 while(ptr.next != null && ptr.data != value) ptr=ptr.next;
-
-Node temp=new Node(data);							//NODE TO BE INSERTED
 
 if(ptr.data != value || ptr.next == null)					//CASE OF NO MATCH FOUND
 {
@@ -188,7 +179,6 @@ return head;
 //LINKING ACCORDINGLY:-
 temp.next=ptr.next;
 ptr.next.prev=temp;
-
 ptr.next=temp;
 temp.prev=ptr;
 return head;
@@ -210,13 +200,12 @@ return head;
 if(head != null)
 {
 Node ptr=head;
-Node preptr=ptr;
-Node temp=new Node(data);
+Node temp=new Node(data);							//NODE TO BE INSERTED
+
 int count=1;
 
 while(ptr.next != null &&  count < x)
 {
-preptr=ptr;
 count++;
 ptr=ptr.next;
 }
@@ -229,13 +218,13 @@ temp.prev=ptr;
 return head;
 }
 
-//CASE OF INSERTION IN BETWEEN...:-
-if(preptr != ptr)
+//CASE OF INSERTION IN BETWEEN THE LIST:-
+if(ptr.prev != null)
 {
 temp.next=ptr;
+temp.prev=ptr.prev;
+ptr.prev.next=temp;
 ptr.prev=temp;
-preptr.next=temp;
-temp.prev=preptr;
 return head;
 }
 
@@ -267,16 +256,12 @@ private static Node deletionAtEnd(Node head)
 if(head != null)
 {
 Node tail=head;
-Node pretail=tail;
-while(tail.next != null)
-{
-pretail=tail;
-tail=tail.next;
-}
+while(tail.next != null) tail=tail.next;
 
-if(pretail != tail)
+//CASE OF MULTIPLE NODES:-
+if(tail.prev != null)
 {
-pretail.next=null;
+tail.prev.next=null;
 tail.prev=null;
 return head;
 }
@@ -300,12 +285,10 @@ return head;
 if(head != null)
 {
 Node ptr=head;
-Node preptr=ptr;
 int count=1;
 
 while(ptr.next != null && count < x)
 {
-preptr=ptr;
 ptr=ptr.next;
 count++;
 }
@@ -318,12 +301,12 @@ return head;
 }
 
 //CASE WHEN POSITION IS GREATER THAN 1:-
-if(preptr != ptr)
+if(ptr.prev != null)
 {
 if(ptr.next != null)
 {
-preptr.next=ptr.next;
-ptr.next.prev=preptr;
+ptr.prev.next=ptr.next;
+ptr.next.prev=ptr.prev;
 
 ptr.next=null;
 ptr.prev=null;
@@ -331,8 +314,8 @@ return head;
 }
 
 //CASE OF DELETION AT END:-
+ptr.prev.next=null;
 ptr.prev=null;
-preptr.next=null;
 return head;
 }
 
@@ -351,13 +334,8 @@ private static Node delete(Node head,int value)
 if(head != null)
 {
 Node ptr=head;
-Node preptr=ptr;
 
-while(ptr.next != null && ptr.data != value)
-{
-preptr=ptr;
-ptr=ptr.next;
-}
+while(ptr.next != null && ptr.data != value) ptr=ptr.next;
 
 if(ptr.data != value)							
 {
@@ -365,24 +343,26 @@ System.out.println("#NO MATCH FOUND -> NO DELETION");
 return head;
 }
 
-if(ptr != preptr)
+if(ptr.prev != null)
 {
 if(ptr.next != null)
 {
-preptr.next=ptr.next;
-ptr.next.prev=preptr;
+ptr.prev.next=ptr.next;
+ptr.next.prev=ptr.prev;
 
 ptr.next=null;
 ptr.prev=null;
 return head;
 }
+
 //CASE OF DELETION AT END:-
-preptr.next=null;
+ptr.prev.next=null;
 ptr.prev=null;
 return head;
 }
+
 //CASE OF DELETION AT HEAD:-
-head.next.prev=null;
+if(head.next != null) head.next.prev=null;
 return head.next;
 }
 System.out.println("#UNDERFLOW!!");
