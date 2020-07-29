@@ -21,11 +21,11 @@ while(n-- > 0) head=insertAtEnd(head,sc.nextInt());
 
 forwardPrint(head);									//FORWARD_PRINTING
 
+backwardPrint(head);									//BACKWARD-PRINTING
+
 System.out.print("SCAN AN ELEMENT TO BE INSERTED AT BEGAN: ");
 head=insertAtBegin(head,sc.nextInt());
 forwardPrint(head);									//FORWARD_PRINTING
-
-backwardPrint(head);									//BACKWARD-PRINTING
 
 System.out.println("#INSERTION BEFORE VALUE:-");
 System.out.print("ENTER THE DATA AND VALUE: ");
@@ -44,7 +44,216 @@ forwardPrint(head);
 System.out.print("ENTER THE DATA AND POSITION FOR INSERTION: ");
 head=insertAt(head,sc.nextInt(),sc.nextInt());
 forwardPrint(head);
+
+System.out.println("#DELETION AT BEGINNING:- ");
+head=deletionAtBegin(head);
+forwardPrint(head);
+
+System.out.println("#DELETION AT END:- ");
+head=deletionAtEnd(head);
+forwardPrint(head);
+
+System.out.println("#DELETION AT MID:-");
+head=deletionAtMid(head);
+forwardPrint(head);
+
+System.out.print("ENTER POSITION FOR DELETION: ");
+head=deleteAt(head,sc.nextInt());
+forwardPrint(head);
+
+System.out.print("ENTER THE VALUE FOR DELETION: ");
+head=delete(head,sc.nextInt());
+forwardPrint(head);
+
 }
+}
+
+
+private static Node delete(Node head,int value)					//DELETION BY VALUE
+{
+if(head != null)
+{
+Node ptr=head;
+
+while(ptr.next != head && ptr.data != value) ptr=ptr.next;
+/*
+NOW "ptr" IS AT THE POSITION OF ELEMENT TO BE DELETED
+IF ELEMENT EXISTS
+*/
+
+if(head.data == value)
+{
+if(head.next != head)
+{
+Node ptr2=head;
+ptr2.prev.next=ptr2.next;
+ptr2.next.prev=ptr2.prev;
+head=ptr2.next;									//UPDAING HEAD
+ptr2.next=null;
+ptr2.prev=null;
+return head;
+}
+
+//CASE OF SINGLE NODE:
+return null;
+}
+
+//CASE OF NO DELETION:
+if(ptr.data != value)
+{
+System.out.println("#NO MATCH FOUND -> NO DELETION");
+return head;
+}
+
+ptr.prev.next=ptr.next;
+ptr.next.prev=ptr.prev;
+ptr.next=null;
+ptr.prev=null;
+return head;
+}
+System.out.println("#UNDERFLOW!!");
+return head;
+}
+
+
+private static Node deleteAt(Node head,int x)						//DELETION BY POSITION
+{
+if(x < 1)
+{
+System.out.println("#INVALID POSITION -> NO DELETION");
+return head;
+}
+
+if(head != null)
+{
+Node ptr=head;
+int count=1;
+
+while(ptr.next != head && count < x)
+{
+count++;
+ptr=ptr.next;
+}
+/*
+NOW "ptr" IS AT THE POSITION OF ELEMENT TO BE DELETED
+AND "count" WILL BE EQUAL TO GIVEN POSITION "x"
+*/
+
+//CASE OF NO DELETION:
+if(count != x)
+{
+System.out.println("#INVALID POSITION -> NO DELETION");
+return head;
+}
+
+//CASE OF DELETION AT HEAD ONWARDS:
+if(x > 1)
+{
+ptr.prev.next=ptr.next;
+ptr.next.prev=ptr.prev;
+ptr.next=null;
+ptr.prev=null;
+return head;
+}
+
+//CASE OF DELETION AT HEAD:-
+
+if(head.next != head)
+{
+Node ptr2=head;
+ptr2.prev.next=ptr2.next;
+ptr2.next.prev=ptr2.prev;
+head=ptr2.next;									//UPDAING HEAD
+ptr2.next=null;
+ptr2.prev=null;
+return head;
+}
+
+//CASE OF SINGLE NODE:
+return null;
+}
+System.out.println("#UNDERFLOW!!");
+return head;
+}
+
+
+private static Node deletionAtBegin(Node head)					//DELETION AT BEGINNING
+{
+if(head != null)
+{
+if(head.next != head)
+{
+Node ptr=head;
+ptr.prev.next=ptr.next;
+ptr.next.prev=ptr.prev;
+head=ptr.next;										//UPDAING HEAD
+ptr.next=null;
+ptr.prev=null;
+return head;
+}
+
+//CASE OF SINGLE NODE:
+return null;
+}
+System.out.println("#UNDERFLOW!!");
+return head;
+}
+
+
+private static Node deletionAtEnd(Node head)						//DELETION AT END
+{
+if(head != null)
+{
+if(head.next != head)
+{
+Node ptr=head;										//LAST-NODE
+
+while(ptr.next != head) ptr=ptr.next;
+
+ptr.prev.next=ptr.next;
+ptr.next.prev=ptr.prev;
+ptr.next=null;
+ptr.prev=null;
+return head;
+}
+
+//CASE OF SINGLE NODE:
+return null;
+}
+System.out.println("#UNDERFLOW!!");
+return head;
+}
+
+
+private static Node deletionAtMid(Node head)						//DELETION AT MID
+{
+if(head != null)
+{
+if(head.next != head)
+{
+Node fptr=head;									//FAST-POINTER
+Node sptr=head;									//SLOW-POINTER
+
+while(true)
+{
+fptr=fptr.next.next;
+sptr=sptr.next;
+if(fptr == head || fptr.next == head) break;
+}
+//NOW "sptr" IS AT MID(CEIL)
+
+sptr.prev.next=sptr.next;
+sptr.next.prev=sptr.prev;
+sptr.next=null;
+sptr.prev=null;
+return head;
+}
+
+//CASE OF SINGLE NODE:
+return null;
+}
+System.out.println("#UNDERFLOW!!");
+return head;
 }
 
 
