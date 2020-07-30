@@ -14,6 +14,46 @@ if(head == null)
 head=new Node(data);
 }
 
+
+private int midElement(Node head)						//MIDDLE ELEMENT
+{
+Node sptr=head;
+Node fptr=head;
+
+while(fptr != null && fptr.next != null)
+{
+fptr=fptr.next.next;
+sptr=sptr.next;
+}
+return sptr.data;
+}
+
+
+private Node rotateByMid(Node head)						//ROTATE BY MID
+{
+if(head != null)
+{
+Node sptr=head;
+Node fptr=head;
+
+while(fptr != null && fptr.next != null)
+{
+fptr=fptr.next.next;
+sptr=sptr.next;
+}
+
+Node tail=head;
+while(tail.next != null) tail=tail.next;
+
+tail.next=head;
+head=sptr.next;								//UPDATE HEAD
+sptr.next=null;
+return head;
+}
+return head;
+}
+
+
 public static void main(String[] args)
 {
 Scanner sc=new Scanner(System.in);
@@ -37,24 +77,14 @@ temp=temp.next;
 else list=new List2();
 
 System.out.println("MIDDLE ELEMENT IS: "+ list.midElement(list.head));
+
+list.head=list.rotateByMid(list.head);
+list.Print(list.head);
 }
 
 
-private int midElement(Node head)					//MIDDLE ELEMENT
-{
-Node sptr=head;
-Node fptr=head;
 
-while(fptr != null && fptr.next != null)
-{
-fptr=fptr.next.next;
-sptr=sptr.next;
-}
-return sptr.data;
-}
-
-
-private void Print(Node head)						//PRINT METHOD
+private void Print(Node head)							//PRINT METHOD
 {
 System.out.print("LINKEDLIST: ");
 while(head != null)
@@ -79,4 +109,7 @@ this.data=data;
 this.next=null;
 }
 }
-//MIDDLE ELEMENT IN A LINKEDLIST (CEIL VALUE)
+/*
+1.MIDDLE ELEMENT IN A LINKEDLIST (CEIL VALUE)
+2.ROTATION BY MID
+*/

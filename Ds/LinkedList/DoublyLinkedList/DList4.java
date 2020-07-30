@@ -14,11 +14,13 @@ if(n > 0) System.out.print("SCAN DOUBLYLINKEDLIST ELEMENTS: ");
 
 while(n-- > 0) head=insertAtEnd(head,sc.nextInt());
 Print(head);									//FORWARD-PRINTING	
-
+/*
 System.out.println("#AFTER REARRANGING:- ");
 head=rearrangeList(head);
-Print(head);									//FORWARD-PRINTING	
+Print(head);*/									//FORWARD-PRINTING	
 
+head=reverseLL(head);
+Print(head);
 }
 
 
@@ -57,7 +59,35 @@ VIA "if" STATEMENT IF THE LAST ELEMENT IS AT "ODD POSITION"
 */
 
 }
-System.out.println("#NOTHING TO REARRANGE -> EMPTY DOUBLYLINKEDLIST");
+System.out.println("#NOTHING TO REARRANGE . EMPTY DOUBLYLINKEDLIST");
+return head;
+}
+
+
+private static Node reverseLL(Node head)					//REVERSE LIST
+{
+Node temp = null;
+Node current = head;
+
+while (current !=  null)
+{
+System.out.println("current.data=> "+current.data);
+temp = current.prev;								//PREVIOUS REFERANCE OF CURRENT
+current.prev = current.next;							//UPDATING PREVIOUS TO MAKE IT REVERSED
+current.next = temp;								//UPDATING NEXT
+current = current.prev;
+/*
+HERE WE DID IS WHAT WE KEPT THE PREVIOUS AND UPDATE THE PREVIOUS TO
+IT's NEXT
+
+NOW WE CONNECTED NEXT AS PREVIOUS AND PREVIOUS AS NEXT
+
+SINCE "current.prev" IS POINTING TO NEXT ELEMENT'S REFERANCE
+NOW CURRENT IS UPDATED TO IT's NEXT ELEMENT's REFERANCE
+*/
+
+}
+if(temp != null ) return temp.prev;
 return head;
 }
 

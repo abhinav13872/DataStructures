@@ -15,6 +15,8 @@ if(n > 0) System.out.print("SCAN DOUBLYLINKEDLIST ELEMENTS: ");
 while(n-- > 0) head=insertAtEnd(head,sc.nextInt());
 Print(head);									//FORWARD-PRINTING	
 
+System.out.println("COUNT OF NODES: "+getCount(head));
+
 System.out.println("#ROTATE THE DOUBLYLINKEDLIST BY K ELEMENTS:-");
 System.out.print("SCAN VALUE OF K: ");
 head=rotateByK(head,sc.nextInt());
@@ -23,11 +25,27 @@ Print(head);									//FORWARD-PRINTING
 }
 
 
+private static int getCount(Node head)					//COUNT OF NODES
+{
+if(head != null)
+{
+Node tail=head;
+while(tail.next != null) tail=tail.next;
+
+Node x=tail;
+int total=0;
+for(total=0;(x != null);total++) x=x.prev;
+return total;
+}
+return 0;
+}
+
+
 private static Node rotateByK(Node head, int k)
 {
 if(head != null)
 {
-Node tail=head;										//LAST NODE
+Node tail=head;								//LAST NODE
 int len=1;
 while(tail.next != null)
 {

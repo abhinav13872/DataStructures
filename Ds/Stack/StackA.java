@@ -57,6 +57,20 @@ return true;
 }
 
 
+public int getMin()							//GET MIN OF STACK
+{
+int temp=top;
+int min=Integer.MAX_VALUE;
+
+while(temp != -1)
+{
+if(arr[temp] < min) min=arr[temp];
+temp--;
+}
+return min;
+}
+
+
 public static void main(String[] args)
 {
 Scanner sc=new Scanner(System.in);
@@ -70,6 +84,7 @@ int n=sc.nextInt();
 System.out.print("SCAN ELEMENTS: ");
 while(n-- > 0) s1.push(sc.nextInt());
 
+System.out.println("MIN ELEMENT: "+s1.getMin());
 System.out.println("ELEMENT POPPED: "+s1.pop());
 System.out.println("ELEMENT AT PEEK: "+s1.peek());
 }
