@@ -1,12 +1,11 @@
-package TREES;
+package BINARYSEARCHTREE;
 import java.util.Scanner;
-public class BinarySearchTree4
+public class BinarySearchTree3
 {
-
 public static void main(String[] args)
 {
 Scanner sc=new Scanner(System.in);
-BinarySearchTree4 BST=new BinarySearchTree4();
+BinarySearchTree3 BST=new BinarySearchTree3();
 BSTNode root=null;
 
 System.out.print("ENTER THE NO. OF ELEMENTS TO BE SCANNED: ");
@@ -19,20 +18,53 @@ root=BST.insert(root,sc.nextInt());
 System.out.println("LEVEL ORDER TRAVERSAL OF A TREE:- ");
 BST.BFS(root);
 
-System.out.print("ENTER NODES TO GET THEIR ANCESTOR: ");
-System.out.println("ANCESTOR IS: "+ (BST.findLCA(root,sc.nextInt(),sc.nextInt())).data);
+System.out.print("SCAN AN ELEMENT TO BE REMOVED: ");
+root=BST.deleteNode(root,sc.nextInt());
+
+System.out.println("LEVEL ORDER TRAVERSAL OF A TREE:- ");
+BST.BFS(root);
 }
 
 
-public BSTNode findLCA(BSTNode root,int n1,int n2)
+public int min(BSTNode root)
 {
-if(root == null) return null;
-if(root.data == n1 || root.data == n2) return root;
+while(root.left != null) root=root.left;
+return root.data;
+}
 
-if(n1 < root.data && n2 < root.data) return findLCA(root.left,n1,n2);
 
-if(n1 > root.data && n2 > root.data) return findLCA(root.right,n1,n2);
+public int max(BSTNode root)
+{
+while(root.right != null) root=root.right;
+return root.data;
+}
 
+
+public BSTNode deleteNode(BSTNode root,int data)
+{
+if(data < root.data && data >= min(root))
+{
+root.left=deleteNode(root.left,data);//UPDATING REFERANCE
+}
+
+if(data > root.data && data <= max(root))
+{
+root.right=deleteNode(root.right,data);//UPDATING REFERANCE
+}
+
+if(data == root.data)
+{
+/*
+IF THE NODE TO BE DELETED HAS NO CHILD OR A SINGLE CHILD:-
+*/
+if(root.left == null) return root.right;
+if(root.right == null) return root.left;
+/*
+IF THE NODE TO BE DELETED  HAS TWO CHILD:-
+*/
+root.data=min(root.right);
+root.right=deleteNode(root.right,root.data);
+}
 return root;
 }
 
@@ -94,4 +126,4 @@ this.left=null;
 this.right=null;
 }
 }
-//LOWEST COMMON ANCESTOR IN BINARY SEARCH TREE(BST)
+//DELETION OF NODE IN BINARY SEARCH TREE(BST)
