@@ -404,6 +404,25 @@ return head;
 }*/
 
 
+/*
+//#METHOD-3 TO REVERSE LINKEDLIST:-
+public Node reverseLL(Node head)					//REVERSE LINKEDLIST
+{
+Node prev=null;
+Node current=head;
+Node next=null;
+while(current!=null)
+{
+next=current.next;							//STORES REFERANCE OF NEXT NODE ELSE IT WILL BE DEREFERANCED
+current.next=prev;							//STORES REFERANCE OF PREVIOUS NODE
+
+prev=current;								//UPDATING PREVIOUS NODE REFERANCE FOR NEXT NODE
+current=next;								//ITERATOR FOR LOOP
+}
+return prev;
+}*/
+
+
 private boolean check(Node p)						//CHECKS LINKEDLIST IS IN NON-DECREASING FORMAT OR NOT...
 {
 return ((p == null) || (p.next == null) || (p.data <= p.next.data && check(p.next)));

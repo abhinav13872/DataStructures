@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class List3
 {
-Node head;									//START NODE
+Node head;								//START NODE
 
 public List3()
 {}
@@ -67,7 +67,7 @@ ptr2=ptr2.next;
 Node temp=new Node(ptr1.data);
 if(HEAD != null)
 {
-if(ptr2.data <= ptr1.data)					//INSERTION IN BETWEEN THE SORTED LINKEDLIST [ptr2.data <= ptr1.data]
+if(ptr2.data <= ptr1.data)						//INSERTION IN BETWEEN THE SORTED LINKEDLIST [ptr2.data <= ptr1.data]
 {
 temp.next=ptr2.next;
 ptr2.next=temp;
