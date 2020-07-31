@@ -24,11 +24,22 @@ private static Node groupSwap(Node head,int k)				//GROUP SWAP
 {
 if(head != null)
 {
+Node HEAD=head;
+int count=1;
+while(HEAD.next !=null)
+{
+count++;
+HEAD=HEAD.next;
+}
+System.out.println("NO. OF NODES: "+count);
+
+if(k >= count || k < 1) return head;						//"NO SWAP"
+
 Node ptr1=head;
 Node NEXT=null;
 Node PREV=null;
 
-while(ptr1 != null)
+while(ptr1 != null && ptr1.next != null)
 {
 int gs=k;
 Node ptr2=ptr1;
@@ -38,39 +49,53 @@ while(gs-1 > 0)
 ptr2=ptr2.next;
 gs--;
 }
+System.out.println("ptr1.data: "+ptr1.data);
+System.out.println("ptr2.data: "+ptr2.data);
 
-System.out.println("ptr1: "+ptr1.data);
-
-if(ptr2 == null || ptr2.next == null) return head;
-System.out.println("ptr2: "+ptr2.data);
-
-gs=k;
 Node ptr3=ptr2.next;
+if(ptr3 != null)
+{
+
 Node ptr4=ptr3;
-while(gs-1 > 0)
+if(ptr4 != null)
+{
+gs=k;
+while(gs-1 > 0 && ptr4.next != null)
 {
 ptr4=ptr4.next;
 gs--;
 }
 
-System.out.println("ptr3: "+ptr3.data);
-if(ptr4 == null || ptr4.next == null) return head;
-System.out.println("ptr4: "+ptr4.data);
+System.out.println("ptr3.data: "+ptr3.data);
+System.out.println("ptr4.data: "+ptr4.data);
 
-NEXT=ptr4.next;								//STORING NEXT
-if(PREV != null) PREV.next=ptr3;
+NEXT=ptr4.next;								//STORING NEXT NODE
 ptr2.next=ptr4.next;
 ptr4.next=ptr1;
 if(ptr1 == head) head=ptr3;
+if(PREV != null) PREV.next=ptr3;						//LINKING WITH PREVIOUS
+}
+else
+{
+//CASE WHEN "ptr4" IS NULL:-
 
-PREV=ptr2;									//STORING PREVIOUS
+ptr2.next=ptr3.next;
+ptr3.next=ptr1;
+if(ptr1 == head) head=ptr3;
+if(PREV != null) PREV.next=ptr3;						//LINKING WITH PREVIOUS
+}
+
+}
+else return head;								//"NO SWAP"
+
+PREV=ptr2;									//STORING PREVIOUS NODE
 ptr1=NEXT;									//UPDATING POINTER
 }
+return head;
 }
 System.out.println("#NOTHING TO SWAP -> EMPTY LINKEDLIST");
 return head;
 }
-
 
 private static Node insertAtEnd(Node head,int data)				//INSERTION AT END
 {
