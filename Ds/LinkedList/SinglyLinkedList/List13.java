@@ -2,42 +2,44 @@ package SINGLYLINKEDLIST;
 import java.util.*;
 
 
-public class List7
+public class List13
 {
+static Node head=null;								//HEAD OF LINKEDLIST
+static Node HEAD=null;								//REF. OF HEAD
+
 public static void main(String[] args)
 {
 Scanner sc=new Scanner(System.in);
 System.out.print("Scan LINKEDLIST size: ");
 int n=sc.nextInt();
 
-Node head=null;
 System.out.print("Scan LINKEDLIST: ");
 while(n-- > 0) head=insertAtEnd(head,sc.nextInt());
+HEAD=head;
 
-System.out.print("ENTER THE VALUE OF N: ");
-Node temp=NthNode(head,sc.nextInt());
-System.out.println("Nth NODE FROM END: "+temp.data);
+System.out.println("LINKEDLIST IS PALLINDROME: "+isPallindrome(head));
 }
 
 
-private static Node NthNode(Node head,int n)					//Nth NODE FROM END
+static boolean isPallindrome(Node head)
 {
+Node HEAD=head;
 if(head != null)
 {
-Node fptr=head;
-Node sptr=head;
-
-while(n-- > 1) fptr=fptr.next;
-
-while(fptr.next != null)
+String str="";
+while(HEAD != null)
 {
-fptr=fptr.next;
-sptr=sptr.next;
+str+=HEAD.data;
+HEAD=HEAD.next;
 }
-return sptr;
+
+StringBuilder sb=new StringBuilder(str);
+System.out.println("str=>"+ str);
+
+if( str.equals(String.valueOf(sb.reverse())) ) return true;
 }
-return head;
-} 
+return false;
+}
 
 
 private static Node insertAtEnd(Node head,int data)				//INSERTION AT END
@@ -81,5 +83,6 @@ this.next=null;
 }
 }
 /*
-Nth NODE FROM END
+PALLINDROME TEST
+USING STRINGS..
 */

@@ -13,18 +13,20 @@ Scanner sc=new Scanner(System.in);
 System.out.print("Scan LINKEDLIST size: ");
 int n=sc.nextInt();
 
+if(n > 0)
+{
 System.out.print("Scan LINKEDLIST: ");
 while(n-- > 0) head=insertAtEnd(head,sc.nextInt());
 HEAD=head;
-
-Node tail=head;
-while(tail.next != null) tail=tail.next;
+}
 
 System.out.println("LINKEDLIST IS PALLINDROME: "+isPallindrome(head));
 }
 
 
 private static boolean isPallindrome(Node head)				//PALLINDROME
+{
+if(head != null)
 {
 Node fptr=head;
 Node sptr=head;
@@ -38,10 +40,12 @@ sptr=sptr.next;
 
 return checkPallindrome(head,sptr);
 }
+return false;
+}
 
 /*
 //METHOD-1:RECURSION
-private static boolean checkPallindrome(Node ptr1,Node ptr2)			//CHECKS PALLINDROME
+private static boolean checkPallindrome(Node ptr1,Node ptr2)			//CHECKS PALLINDROME USING RECURSSION
 {
 if(ptr2 == null) return true;
 
@@ -67,9 +71,67 @@ return true;
 
 
 //METHOD-2:COMPARISION IN HALVES:
-private static boolean checkPallindrome(Node ptr1,Node ptr2)			//CHECKS PALLINDROME
+private static boolean checkPallindrome(Node head,Node mid)			//CHECKS PALLINDROME USING LINKEDLIST
 {
+Node head1=null;
+Node head2=null;
+Node premid=null;
 
+int count=0;
+
+while(head != mid)
+{
+head1=insertAtEnd(head1,head.data);
+head=head.next;
+premid=head;
+count++;
+}
+
+System.out.println("COUNT: "+count);
+Print(head1);
+
+if(count%2 != 0) head2=mid;
+else head2=mid.next;
+
+head2=reverse(head2);
+Print(head2);
+
+while(head1 != null && head2 != null)
+{
+if(head1.data != head2.data) return false;
+head1=head1.next;
+head2=head2.next;
+}
+return true;
+}
+
+
+private static Node reverse(Node head)
+{
+if(head != null)
+{
+Node temp=null;
+while(head != null)
+{
+temp=insertAtBegin(temp,head.data);
+head=head.next;
+}
+return temp;
+}
+return head;
+}
+
+
+private static Node insertAtBegin(Node head,int data)			//INSERTION AT BEGINNING
+{
+if(head != null)
+{
+Node temp=new Node(data);
+temp.next=head;
+return temp;
+}
+head=new Node(data);
+return head;
 }
 
 
@@ -113,4 +175,9 @@ this.data=data;
 this.next=null;
 }
 }
-//PALLINDROME TEST
+/*
+PALLINDROME TEST
+->USING RECURSION
+->COMPAIRING LINKEDLIST's HALVES
+[BUT THESE METHODS ARE APPLICABLE FOR LINKEDLIST HAVING SINGLE DIGIT NO]
+*/

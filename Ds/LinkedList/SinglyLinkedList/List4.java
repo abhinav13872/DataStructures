@@ -32,19 +32,18 @@ count++;
 HEAD=HEAD.next;
 }
 System.out.println("NO. OF NODES: "+count);
-
 if(k >= count || k < 1) return head;						//"NO SWAP"
+
 
 Node ptr1=head;
 Node NEXT=null;
 Node PREV=null;
-
 while(ptr1 != null && ptr1.next != null)
 {
 int gs=k;
 Node ptr2=ptr1;
 
-while(gs-1 > 0) 
+while(gs-1 > 0 && ptr2.next != null) 
 {
 ptr2=ptr2.next;
 gs--;
@@ -55,10 +54,7 @@ System.out.println("ptr2.data: "+ptr2.data);
 Node ptr3=ptr2.next;
 if(ptr3 != null)
 {
-
 Node ptr4=ptr3;
-if(ptr4 != null)
-{
 gs=k;
 while(gs-1 > 0 && ptr4.next != null)
 {
@@ -74,17 +70,6 @@ ptr2.next=ptr4.next;
 ptr4.next=ptr1;
 if(ptr1 == head) head=ptr3;
 if(PREV != null) PREV.next=ptr3;						//LINKING WITH PREVIOUS
-}
-else
-{
-//CASE WHEN "ptr4" IS NULL:-
-
-ptr2.next=ptr3.next;
-ptr3.next=ptr1;
-if(ptr1 == head) head=ptr3;
-if(PREV != null) PREV.next=ptr3;						//LINKING WITH PREVIOUS
-}
-
 }
 else return head;								//"NO SWAP"
 

@@ -70,7 +70,6 @@ t--;
 }
 
 
-
 class Result
 {
 static Node addListNumbers(Node head1, Node head2)
@@ -129,19 +128,3 @@ sum=sum/10;
 return head3;
 }
 }
-
-/*
-Ques:-
-An n-digit number can be expressed using a linked list of n nodes, where each node can be used to represent a digit.
-
-Now given two numbers represented by two singly linked lists, compute the sum of these numbers, provided that the digits are stored in reverse order, such that the digit of 1’s place is at the head of the list.
-
-Complete the function addListNumbers() which takes the head nodes of two linked lists as parameters and return the head of the list which contains the computed sum.
-
-Input Format:
-First line contains an integer denoting the number of test cases.
-
-Each test cases has 4 lines. First line contains the digits of first number and second lines contains the digits.
-
-Third line contains the digits of second number and fourth lines contains the digits.
-*/
