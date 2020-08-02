@@ -2,7 +2,7 @@ package SINGLYLINKEDLIST;
 import java.util.*;
 
 
-public class List12
+public class List14
 {
 static Node head=null;								//HEAD OF LINKEDLIST
 static Node HEAD=null;								//REF. OF HEAD
@@ -21,6 +21,21 @@ HEAD=head;
 }
 
 System.out.println("LINKEDLIST IS PALLINDROME: "+isPallindrome(head));
+
+System.out.println("MIDDLE ELEMENT IS: "+ midElement(head));
+
+System.out.print("ENTER THE VALUE OF N: ");
+Node temp=NthNode(head,sc.nextInt());
+System.out.println("Nth NODE FROM END: "+temp.data);
+
+/*
+//TO CREATE LOOP:-
+Node tail=head;
+while(tail.next != null) tail=tail.next;
+tail.next=head;
+*/
+
+System.out.println("LOOP PRESENT IN A LINKEDLIST: "+detectLoop(head));
 }
 
 
@@ -43,34 +58,7 @@ return checkPallindrome(head,sptr);
 return false;
 }
 
-/*
-//METHOD-1:RECURSION
-private static boolean checkPallindrome(Node ptr1,Node ptr2)			//CHECKS PALLINDROME USING RECURSSION
-{
-if(ptr2 == null) return true;
 
-boolean result=checkPallindrome(ptr1,ptr2.next);
-System.out.println("result: "+result);
-if(!result) return false;
-//IF "result" COMES FALSE THEN NO NEED TO CHECK FURTHER!
-
-System.out.println("\nINITIALLY:-");
-System.out.println("ptr1: "+ptr1.data);
-System.out.println("ptr2: "+ptr2.data);
-
-ptr1=HEAD;
-HEAD=HEAD.next;
-
-System.out.println("AFTER UPDATING \"ptr1\":-");
-System.out.println("ptr1==> "+ptr1.data);
-System.out.println("ptr2==> "+ptr2.data);
-
-if(ptr1.data != ptr2.data) return false;
-return true;
-}*/
-
-
-//METHOD-2:COMPARISION IN HALVES:
 private static boolean checkPallindrome(Node head,Node mid)			//CHECKS PALLINDROME USING LINKEDLIST
 {
 Node head1=null;
@@ -106,7 +94,7 @@ return true;
 }
 
 
-private static Node reverse(Node head)
+private static Node reverse(Node head)					//REVERSE LINKEDLIST
 {
 if(head != null)
 {
@@ -119,6 +107,59 @@ head=head.next;
 return temp;
 }
 return head;
+}
+
+
+private static int midElement(Node head)					//MIDDLE ELEMENT
+{
+Node sptr=head;
+Node fptr=head;
+
+while(fptr != null && fptr.next != null)
+{
+fptr=fptr.next.next;
+sptr=sptr.next;
+}
+return sptr.data;
+}
+
+
+private static Node NthNode(Node head,int n)					//Nth NODE FROM END
+{
+if(head != null)
+{
+Node fptr=head;
+Node sptr=head;
+
+while(n-- > 1) fptr=fptr.next;
+
+while(fptr.next != null)
+{
+fptr=fptr.next;
+sptr=sptr.next;
+}
+return sptr;
+}
+return head;
+} 
+
+
+private static boolean detectLoop(Node head)					//DETECT LOOP
+{
+if(head != null)
+{
+Node fptr=head;
+Node sptr=head;
+
+while(fptr != null && fptr.next != null)
+{
+fptr=fptr.next.next;
+sptr=sptr.next;
+if(fptr == sptr) return true;
+}
+
+}
+return false;
 }
 
 
@@ -176,7 +217,9 @@ this.next=null;
 }
 }
 /*
-PALLINDROME TEST
-->USING RECURSION
-->COMPAIRING LINKEDLIST's HALVES
+->PALLINDROME
+->REVERSE LINKEDLIST
+->MID ELEMENT
+->Nth NODE FROM END
+->DETECT LOOP
 */
