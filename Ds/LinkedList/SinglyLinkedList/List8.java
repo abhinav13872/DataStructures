@@ -1,5 +1,7 @@
 package SINGLYLINKEDLIST;
 import java.util.*;
+
+
 public class List8
 {
 public static void main(String[] args)
@@ -7,6 +9,7 @@ public static void main(String[] args)
 Scanner sc=new Scanner(System.in);
 System.out.print("No. of Testcases: ");
 int T=sc.nextInt();
+
 while(T-->0)
 {
 System.out.print("Enter the Size of LINKEDLIST: ");
@@ -32,10 +35,13 @@ s.RemoveLoop(head);//REMOVE LOOP METHOD CALLED
 
 if(detectLoop(head)) System.out.println("LOOP PRESENT!!");
 else System.out.println("NO LOOP");
+
+Print(head);
 }
 }
 
-public static void makeLoop(Node head,int p)
+
+public static void makeLoop(Node head,int p)					//MAKE LOOP
 {
 if(p==0) return;
 Node curr=head;
@@ -52,18 +58,20 @@ last=last.next;
 last.next=curr;
 }
 
-public static void Print(Node head)
+
+public static void Print(Node head)						//PRINT
 {
 System.out.print("LINKEDLIST: ");
-while(head!=null)
+while(head != null)
 {
 System.out.print(head.data+" ");
 head=head.next;
 }
-System.out.println();
+System.out.println("\n");
 }
 
-public static boolean detectLoop(Node head)
+
+public static boolean detectLoop(Node head)					//DETECT LOOP
 {
 Node fptr=head;//FAST POINTER
 Node sptr=head;//SLOW POINTER
@@ -73,27 +81,33 @@ Linearly FAST POINTER AND SLOW POINTER NEVER MEETS
 LOOP IS THE CASE WHERE IN THEY MEET!!
 */
 
-while(fptr!=null && fptr.next!=null)
+while(fptr != null && fptr.next != null)
 {
 fptr=fptr.next.next;
 sptr=sptr.next;
-if(fptr==sptr) return true;
+if(fptr == sptr) return true;
 }
 return false;
 }
 }
 
+
+
 class Solver
 {
-public void RemoveLoop(Node head)
+public void RemoveLoop(Node head)						//REMOVE LOOP
 {
 Node fptr=head;
 Node sptr=head;
 Node LoopNode=null;
 boolean LoopCheck=false;
-while(fptr!=null && fptr.next!=null)
+
+while(fptr != null && fptr.next != null)
 {
-if(fptr==sptr)
+fptr=fptr.next.next;
+sptr=sptr.next;
+
+if(fptr == sptr)
 {
 LoopNode=fptr;
 LoopCheck=true;
@@ -101,28 +115,35 @@ break;
 }
 }
 
+//System.out.println("LoopCheck: "+LoopCheck);
+System.out.println("LoopNode: "+LoopNode.data);
+
 if(LoopCheck)
 {
-Node ListNode=head;
+Node temp1=head;								//LISTNODE
 while(true)
 {
-Node temp=LoopNode;
+Node temp2=LoopNode;								//REF OF LOOPNODE
+System.out.println("temp1: "+temp1.data);
 
-while(temp.next!=LoopNode && temp.next!=ListNode)
-temp=temp.next;
+while(temp2.next != LoopNode && temp2.next != temp1) temp2=temp2.next;
+System.out.println("temp2: "+temp2.data);
 
-if(temp.next == ListNode)
+if(temp2.next == temp1)
 {
-System.out.println(temp.data);
-temp.next=null;
+System.out.println("LAST NODE: "+temp2.data+"\n");
+temp2.next=null;
 break;
 }
-ListNode=ListNode.next;
+
+temp1=temp1.next;
 }
 }
 return;
 }
 }
+
+
 
 class Node
 {
