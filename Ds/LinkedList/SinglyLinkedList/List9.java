@@ -31,7 +31,7 @@ int p=sc.nextInt();
 makeLoop(head,p);
 
 Solver s=new Solver();
-//s.RemoveLoop(head);								//REMOVES LOOP
+s.RemoveLoop(head);								//REMOVES LOOP
 
 if(detectLoop(head)) System.out.println("LOOP PRESENT!!");
 else System.out.println("NO LOOP");
@@ -63,11 +63,13 @@ public static void Print(Node head)						//PRINT
 {
 Node HEAD=head;
 System.out.print("LINKEDLIST: ");
-while(HEAD != null && HEAD.next != head)
+
+do
 {
 System.out.print(HEAD.data+" ");
 HEAD=HEAD.next;
 }
+while(HEAD != null && HEAD != head);
 System.out.println("\n");
 }
 
@@ -119,19 +121,8 @@ break;
 
 if(LoopCheck)
 {
-int LoopLength=1;								//LOOP LENGTH
-Node temp=LoopNode;								//LOOPNODE's REF..
-
-while(temp.next != LoopNode)
-{
-LoopLength++;
-temp=temp.next;
-}
-System.out.println("LOOP LENGTH: "+LoopLength);
-
-fptr=head;
+fptr=LoopNode;
 sptr=head;
-for(int i=0;i<LoopLength;i++) fptr=fptr.next;
 
 while(true)
 {
