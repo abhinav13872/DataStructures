@@ -67,9 +67,9 @@ char c=str.charAt(i);								//CURRENT CHARACTER
 //CASE OF OPERANDS:-
 if(Character.isDigit(c) || Character.isLetter(c))
 {
-//System.out.println("OPERAND=> "+c);
+System.out.println("OPERAND=> "+c);
 E+=c;
-//System.out.println("EXPRESSION: "+E);
+System.out.println("EXPRESSION: "+E);
 }
 
 
@@ -77,7 +77,7 @@ E+=c;
 if(c == '(')
 {
 s1.push(c);
-//System.out.println("\'"+c+"\' pushed to stack");
+System.out.println("\'"+c+"\' pushed to stack");
 }
 
 
@@ -87,10 +87,11 @@ if(c == '+' || c == '-' || c == '/' || c == '*' || c == '^')
 if(getPresidance(s1.peek()) >= getPresidance(c))
 {
 while(!s1.isEmpty() && s1.peek() != '(') E+=s1.pop();
-//System.out.println("EXPRESSION: "+E);
+System.out.println("EXPRESSION: "+E);
+System.out.println("PEEK: "+s1.peek());
 }
-//System.out.println("OPERATOR: "+c);
-//System.out.println("\'"+c+"\' pushed to stack");
+System.out.println("OPERATOR: "+c);
+System.out.println("\'"+c+"\' pushed to stack");
 s1.push(c);
 }
 
@@ -101,7 +102,7 @@ if(c == ')' || c == '}' || c == ']' && !s1.isEmpty())
 while(!s1.isEmpty() && s1.peek() != '(') E+=s1.pop();
 s1.pop();
 }
-//System.out.println("\n");
+System.out.println("\n");
 }
 return E;									//POSTFIX EXPRESSION
 }
@@ -117,3 +118,16 @@ if(item == '^') return 3;
 return 0;
 }
 }
+/*
+#TESTCASES:-
+
+2
+((x+y)^a)+((x-c)/b)
+a+b*(c^d-e)^(f+g*h)-i
+
+0
+
+2
+A*(B+C)/D
+(A-(B+C))*D
+*/
