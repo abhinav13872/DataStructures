@@ -10,13 +10,23 @@ public static void main(String[] args)
 {
 Scanner sc=new Scanner(System.in);
 
+System.out.print("#TESTCASES FOR POSTFIX: ");
+int T=Integer.parseInt(sc.nextLine());
+while(T-- > 0)
+{
 System.out.print("SCAN POSTFIX EXPRESSION: ");
 String str1=sc.nextLine().trim();
 System.out.println("POSTFIX: "+PostfixEvaluate(str1));
+}
 
+System.out.print("#TESTCASES FOR PREFIX: ");
+T=Integer.parseInt(sc.nextLine());
+while(T-- > 0)
+{
 System.out.print("SCAN PREFIX EXPRESSION: ");
 String str2=sc.nextLine().trim();
 System.out.println("PREFIX: "+PrefixEvaluate(str2));
+}
 }
 
 
@@ -82,9 +92,35 @@ return 0;
 }
 }
 /*
-#TESTCASE:-
+#TESTCASES OF POSTFIX:- 
+ 
+ 23+2*2/52^/
+ =>0
+ 
+ 8425+-*
+ =>-24
+ 
+ 546+*493/+*
+ =>350
+ 
+ 6324+-*
+ =>-18
+ 
+ 723*-4^93/+
+ =>4
+ 
+ 834+-382/+*2^3+
+ =>52
 
-INFIX  : (2+3)*2/2/5^2
-POSTFIX: 23+2*2/52^/
-PREFIX : //*+2322^52 
+ 
+#TESTCASES OF PREFIX :-
+
+ //*+2322^52
+ =>0
+ 
+ *+3+3^3+333 
+ =>2205
+ 
+ +-*235/^234
+ =>3
 */

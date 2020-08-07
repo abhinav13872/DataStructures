@@ -1,24 +1,30 @@
 package REVERSESTRING;
 import java.util.*;
+
+
 class StringReverse
 {
 public static void main(String[] args)
 {
 Scanner sc=new Scanner(System.in);
-int t=Integer.parseInt(sc.nextLine().trim());
-while(t!=0)
+
+System.out.print("TESTCASES: ");
+int T=Integer.parseInt(sc.nextLine());
+
+while(T-- > 0)
 {
-String a=sc.nextLine().trim();
-StringBuilder sb=new StringBuilder(a);
-sb.reverse();
-System.out.println(sb);//sb.toString() automatically calls toString()
-/*
-toString method returns #code for user defined classes
-but for predefined class it returns String!!
-*/
-t--;
+System.out.print("STRING: ");
+String str=sc.nextLine().trim();
+
+System.out.println("REVERSED_STRING: \""+Reverse(str)+"\"");
+}
 }
 
+
+private static String Reverse(String str)
+{
+StringBuilder sb=new StringBuilder(str);
+return sb.reverse().toString();
 }
 }
 //REVERSE STRING USING STRINGBUILDER CLASS

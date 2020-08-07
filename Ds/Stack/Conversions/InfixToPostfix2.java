@@ -1,4 +1,4 @@
-package STACK;
+package CONVERSIONS;
 import java.util.Scanner;
 import java.util.Stack;
 
