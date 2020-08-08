@@ -11,14 +11,17 @@ CQStack theStack = new CQStack(100); // make new stack
 Scanner s=new Scanner(System.in);
 int t, n, q1, q2;
 String st;
+System.out.print("TESTCASES: ");
 t = Integer.parseInt(s.nextLine().trim());
 
-while(t>0)
+while(t > 0)
 {
 theStack.top = -1;
+
+System.out.print("NO. OF STRINGS TO BE REVERSED: ");
 n= Integer.parseInt(s.nextLine().trim());
 
-while(n>0)
+while(n > 0)
 {
 st = s.nextLine().trim();
 st = reverse(theStack, st);
