@@ -46,7 +46,7 @@ PE+=c;
 }
 
 //OPERATORS CASE:
-if(c == '+' || c == '-' || c == '*' || c == '/' || c == '^')
+if(c == '+' || c == '-' || c == '*' || c == '/' || c == '^' || c == '$')
 {
 if(!s.isEmpty())
 {
@@ -91,11 +91,12 @@ public static int Pres(char c)
 {
 if(c == '+' || c == '-') return 1;
 if(c == '*' || c == '/') return 2;
-if(c == '^') return 3;
+if(c == '^' || c == '$') return 3;
 return 0;
 }
 }
 //INFIX TO POSTFIX [WITHOUT USING PREDEFINED PEEK()]
+
 /*
 #TESTCASES:-
 

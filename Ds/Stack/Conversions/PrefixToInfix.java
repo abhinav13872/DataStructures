@@ -28,7 +28,7 @@ char c=str.charAt(i);
 if(Character.isDigit(c) || Character.isLetter(c)) s.push(c+"");
 
 //OPERATOR CASE:-
-if(c == '+' || c == '-' || c == '*' ||c == '/' ||c == '^')
+if(c == '+' || c == '-' || c == '*' || c == '/' || c == '^' || c == '$')
 {
 String A=s.pop();
 String B=s.pop();

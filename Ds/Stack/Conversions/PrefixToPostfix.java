@@ -61,7 +61,7 @@ char c=str.charAt(i);
 if(Character.isDigit(c) || Character.isLetter(c)) PE+=c;
 
 //OPERATOR
-if(c == '+' || c == '-' || c == '*' || c == '/' || c == '^')
+if(c == '+' || c == '-' || c == '*' || c == '/' || c == '^' || c == '$')
 {
 if(Pres(s.peek()) >= Pres(c)) while(s.peek() != '(') PE+=s.pop();
 s.push(c);
@@ -85,7 +85,7 @@ public static int Pres(char c)						//PRESIDANCE
 {
 if(c == '+' || c == '-') return 1;
 if(c == '*' || c == '/') return 2;
-if(c == '^') return 3;
+if(c == '^' || c == '$') return 3;
 return 0;
 }
 }

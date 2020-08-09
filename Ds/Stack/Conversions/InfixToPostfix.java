@@ -82,7 +82,7 @@ System.out.println("\'"+c+"\' pushed to stack");
 
 
 //CASE OF OPERATOR:-
-if(c == '+' || c == '-' || c == '/' || c == '*' || c == '^')
+if(c == '+' || c == '-' || c == '*' || c == '/' || c == '^' || c == '$')
 {
 if(getPresidance(s1.peek()) >= getPresidance(c))
 {
@@ -114,7 +114,7 @@ private static int getPresidance(char item)					//PRESIDANCE METHOD
 {
 if(item == '+' || item == '-') return 1;
 if(item == '*' || item == '/') return 2;
-if(item == '^') return 3;
+if(item == '^' || item == '$') return 3;
 return 0;
 }
 }

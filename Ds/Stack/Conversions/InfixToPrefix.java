@@ -72,7 +72,7 @@ if(c == '(') s1.push(c);
 
 
 //CASE OF OPERATOR:-
-if(c == '+' || c == '-' || c == '/' || c == '*' || c == '^')
+if(c == '+' || c == '-' || c == '/' || c == '*' || c == '^' || c == '$')
 {
 if(!s1.isEmpty() && getPresidance(s1.peek()) >= getPresidance(c)) while(!s1.isEmpty() && s1.peek() != '(') E+=s1.pop();
 s1.push(c);
@@ -94,7 +94,7 @@ private static int getPresidance(char item)					//PRESIDANCE METHOD
 {
 if(item == '+' || item == '-') return 1;
 if(item == '*' || item == '/') return 2;
-if(item == '^') return 3;
+if(item == '^' || item == '$') return 3;
 return 0;
 }
 }

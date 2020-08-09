@@ -43,7 +43,7 @@ char c=str.charAt(i);
 if(Character.isDigit(c) || Character.isLetter(c)) s.push(c - '0');
 
 //OPERATOR CASE:-
-if(c == '+' || c == '-' || c == '*' ||c == '/' ||c == '^')
+if(c == '+' || c == '-' || c == '*' ||c == '/' ||c == '^' || c == '$')
 {
 int A=s.pop();
 int B=s.pop();
@@ -69,7 +69,7 @@ if(Character.isDigit(c) || Character.isLetter(c)) s.push(c - '0');
 
 
 //OPERATOR CASE:-
-if(c == '+' || c == '-' || c == '*' ||c == '/' ||c == '^')
+if(c == '+' || c == '-' || c == '*' ||c == '/' ||c == '^' || c == '$')
 {
 int A=s.pop();
 int B=s.pop();
@@ -87,7 +87,7 @@ if(c == '+') return A+B;
 if(c == '-') return A-B;
 if(c == '*') return A*B;
 if(c == '/') return A/B;
-if(c == '^') return (int)Math.pow(A,B);
+if(c == '^' || c == '$') return (int)Math.pow(A,B);
 return 0;
 }
 }
@@ -96,6 +96,9 @@ return 0;
  
  23+2*2/52^/
  =>0
+ 
+ 834+-382/+*2$3+
+ =>52
  
  8425+-*
  =>-24
