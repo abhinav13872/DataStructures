@@ -21,6 +21,39 @@ System.out.println("REVERSALS REQUIRED: "+reversals(str));
 }
 
 
+//METHOD-1:-
+/*public static int reversals(String str)
+{
+Stack<Character> s=new Stack<>();				//STACK
+
+//CASE OF ODD LENGTH EXPRESSION:-
+if(str.length()%2 != 0) return -1;
+
+//CASE OF EVEN LENGTH EXPRESSION:-
+for(int i=0;i<str.length();i++)
+{
+char c=str.charAt(i);
+
+if(c == '[') s.push(c);
+if(!s.isEmpty() && c == ']' && s.peek() == '[') s.pop();
+else if(c == ']') s.push(c);
+}
+//NOW STACK WILL HAVE "UNBALANCED EXPRESSION" ELSE NOTHING
+
+int count=0;							//COUNT
+while(!s.isEmpty())
+{
+char A=(Character)s.pop();
+char B=(Character)s.pop();
+
+if(A == '[') count++;
+if(B == ']') count++;
+}
+return count;
+}*/
+
+
+//METHOD-2:-
 public static int reversals(String str)
 {
 Stack<Character> s=new Stack<>();				//STACK
@@ -35,25 +68,53 @@ char c=str.charAt(i);
 
 if(c == '[') s.push(c);
 if(!s.isEmpty() && c == ']' && s.peek() == '[') s.pop();
-if(c == ']') s.push(c);
+else if(c == ']') s.push(c);
 }
+//NOW STACK WILL HAVE "UNBALANCED EXPRESSION" ELSE NOTHING
 
-float O=0,C=0;
+//CASE OF UNBALANCED EXPRESSION:-
+if(!s.isEmpty())
+{
+float open=0;							//COUNT OF OPEN BRACES
+float close=0;							//COUNT OF CLOSED BRACES
+
 while(!s.isEmpty())
 {
-char item=s.pop();
-if(item == '[') O++;
-if(item == ']') C++;
+char c=s.pop();
+
+if(c == '[') open++;
+if(c == ']') close++;
 }
-System.out.println("O: "+O);
-System.out.println("C: "+C);
+return (int)(Math.ceil(open/2)+Math.ceil(close/2));
+}
 
-
-System.out.println((int)Math.ceil(O/2));
-System.out.println((int)Math.ceil(C/2));
-
-
-return ((int)Math.ceil(O/2) + (int)Math.ceil(C/2));
+//CASE OF BALANCED EXPRESSION:-
+return 0;
 }
 }
 //MIN REVERSALS REQUIRED TO BALANCE THE GIVEN EXPRESSION
+
+/*
+TESTCASES:
+
+][[]][[[
+=>3
+
+[[[[]]
+=>1
+
+[[[
+=>-1
+
+[][]
+=>0
+
+[[[[
+=>2
+
+[]
+=>0
+
+][
+=>2
+*/
