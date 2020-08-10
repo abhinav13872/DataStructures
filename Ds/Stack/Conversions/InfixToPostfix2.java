@@ -100,13 +100,15 @@ return 0;
 /*
 #TESTCASES:-
 
-2
-((x+y)^a)+((x-c)/b)
-a+b*(c^d-e)^(f+g*h)-i
+ ((x+y)^a)+((x-c)/b)
+ =>xy+a^xc-b/+
 
-0
+ a+b*(c^d-e)^(f+g*h)-i
+ =>abcd^e-fgh*+^*+i-
 
-2
-A*(B+C)/D
-(A-(B+C))*D
+ A*(B+C)/D
+ =>ABC+*D/
+ 
+ (A-(B+C))*D
+ =>ABC+-D*
 */

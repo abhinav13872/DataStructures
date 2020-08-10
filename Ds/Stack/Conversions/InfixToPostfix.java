@@ -20,39 +20,10 @@ System.out.println("POSTFIX: "+ InfixToPostfixUtil(str));
 }
 
 
-private static boolean pcheck(String str)					//PARENTHESIS CHECK
-{
-Stack<Character> s1=new Stack<>();						//STACK
-
-for(int i=0;i<str.length();i++)
-{
-char c=str.charAt(i);								//CURRENT POSN's CHARACTER
-
-//CASE OF OPENING BRACE's CHARACTER:-
-if(c == '{' || c == '(' || c == '[') s1.push(c);
-else if(c == '}' || c == ')' || c == ']')					//CASE OF CLOSING BRACE's CHARACTER
-{
-if(!s1.isEmpty())
-{
-char item=s1.pop();
-if((c == '}' && item != '{') 
-|| (c == ')' && item != '(')
-|| (c == ']' && item != '[')) return false;
-}
-else return false;								//CASE OF UNBALANCED CLOSING BRACES
-}
-}
-if(!s1.isEmpty()) return false;						//CASE OF UNBALANCED OPENING BRACES 
-return true;
-}
-
-
 public static String InfixToPostfixUtil(String str)				//INFIX_TO_POSTFIX METHOD
 {
 Stack<Character> s1=new Stack<>();						//STACK
 
-if(pcheck(str))
-{
 str+=')';
 s1.push('(');
 
@@ -106,8 +77,6 @@ System.out.println("\n");
 }
 return E;									//POSTFIX EXPRESSION
 }
-return "\"UNBALANCED EXPRESSION\"";
-}
 
 
 private static int getPresidance(char item)					//PRESIDANCE METHOD
@@ -118,16 +87,19 @@ if(item == '^' || item == '$') return 3;
 return 0;
 }
 }
+
 /*
 #TESTCASES:-
 
-2
-((x+y)^a)+((x-c)/b)
-a+b*(c^d-e)^(f+g*h)-i
+ ((x+y)^a)+((x-c)/b)
+ =>xy+a^xc-b/+
 
-0
+ a+b*(c^d-e)^(f+g*h)-i
+ =>abcd^e-fgh*+^*+i-
 
-2
-A*(B+C)/D
-(A-(B+C))*D
+ A*(B+C)/D
+ =>ABC+*D/
+ 
+ (A-(B+C))*D
+ =>ABC+-D*
 */

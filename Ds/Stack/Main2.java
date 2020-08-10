@@ -16,32 +16,44 @@ while(t-- > 0)
 {
 System.out.print("EXPRESSION: ");
 String str=sc.nextLine();
-System.out.println("REVERSALS NEEDED: "+reversals(str));
+System.out.println("REVERSALS REQUIRED: "+reversals(str));
 }
 }
 
 
 public static int reversals(String str)
 {
-Stack<Character> s1=new Stack<>();				//STACK-1
-Stack<Character> s2=new Stack<>();				//STACK-2
+Stack<Character> s=new Stack<>();				//STACK
 
+//CASE OF ODD LENGTH EXPRESSION:-
+if(str.length()%2 != 0) return -1;
+
+//CASE OF EVEN LENGTH EXPRESSION:-
 for(int i=0;i<str.length();i++)
 {
 char c=str.charAt(i);
 
-//OPENING BRACE:
-if(c == '(' || c == '{' || c == '[') s1.push(c);
-
-//CLOSING BRACE:
-if(c == ')' || c == '}' || c == ']') s2.push(c);
+if(c == '[') s.push(c);
+if(!s.isEmpty() && c == ']' && s.peek() == '[') s.pop();
+if(c == ']') s.push(c);
 }
 
-int count=0;							//COUNT OF REVERSALS REQUIRED
-if(s1.size() != s2.size())
+float O=0,C=0;
+while(!s.isEmpty())
 {
+char item=s.pop();
+if(item == '[') O++;
+if(item == ']') C++;
+}
+System.out.println("O: "+O);
+System.out.println("C: "+C);
 
+
+System.out.println((int)Math.ceil(O/2));
+System.out.println((int)Math.ceil(C/2));
+
+
+return ((int)Math.ceil(O/2) + (int)Math.ceil(C/2));
 }
-return count;
 }
-}
+//MIN REVERSALS REQUIRED TO BALANCE THE GIVEN EXPRESSION

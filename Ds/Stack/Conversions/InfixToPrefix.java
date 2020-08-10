@@ -98,3 +98,18 @@ if(item == '^' || item == '$') return 3;
 return 0;
 }
 }
+/*
+#TESTCASES:-
+
+ ((x+y)$a)+((x-c)/b)
+ =>+$+xya/-xcb
+
+ a+b*(c^d-e)^(f+g*h)-i
+ =>+a*b-^-^cde+f*ghi
+
+ A*(B+C)/D
+ =>*A/+BCD
+ 
+ (A-(B+C))*D
+ =>*-A+BCD
+*/
