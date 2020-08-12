@@ -14,7 +14,7 @@ this.next=null;
 }
 
 
-public class List6
+public class IntersectionPoint
 {
 Node head=null;
 Node tail=null;

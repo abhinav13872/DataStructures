@@ -1,8 +1,8 @@
-package SINGLYLINKEDLIST;
+package REMOVELOOP;
 import java.util.*;
 
 
-public class List9
+public class List8
 {
 public static void main(String[] args)
 {
@@ -31,7 +31,7 @@ int p=sc.nextInt();
 makeLoop(head,p);
 
 Solver s=new Solver();
-s.RemoveLoop(head);								//REMOVES LOOP
+s.RemoveLoop(head);//REMOVE LOOP METHOD CALLED
 
 if(detectLoop(head)) System.out.println("LOOP PRESENT!!");
 else System.out.println("NO LOOP");
@@ -61,15 +61,12 @@ last.next=curr;
 
 public static void Print(Node head)						//PRINT
 {
-Node HEAD=head;
 System.out.print("LINKEDLIST: ");
-
-do
+while(head != null)
 {
-System.out.print(HEAD.data+" ");
-HEAD=HEAD.next;
+System.out.print(head.data+" ");
+head=head.next;
 }
-while(HEAD != null && HEAD != head);
 System.out.println("\n");
 }
 
@@ -98,12 +95,12 @@ return false;
 
 class Solver
 {
-public void RemoveLoop(Node head)
+public void RemoveLoop(Node head)						//REMOVE LOOP
 {
-Node fptr=head;								//FAST POINTER
-Node sptr=head;								//SLOW POINTER
-Node LoopNode=null;								//LOOPNODE
-boolean LoopCheck=false;							//LOOP CHECK
+Node fptr=head;
+Node sptr=head;
+Node LoopNode=null;
+boolean LoopCheck=false;
 
 while(fptr != null && fptr.next != null)
 {
@@ -118,36 +115,33 @@ break;
 }
 }
 
+//System.out.println("LoopCheck: "+LoopCheck);
+System.out.println("LoopNode: "+LoopNode.data);
 
 if(LoopCheck)
 {
-fptr=LoopNode;
-sptr=head;
-
+Node temp1=head;								//LISTNODE
 while(true)
 {
-if(fptr == sptr)
+Node temp2=LoopNode;								//REF OF LOOPNODE
+System.out.println("temp1: "+temp1.data);
+
+while(temp2.next != LoopNode && temp2.next != temp1) temp2=temp2.next;
+System.out.println("temp2: "+temp2.data);
+
+if(temp2.next == temp1)
 {
-while(sptr.next != fptr) sptr=sptr.next;
-sptr.next=null;
-return;
+System.out.println("LAST NODE: "+temp2.data+"\n");
+temp2.next=null;
+break;
 }
 
-if(fptr != sptr && fptr.next == sptr.next) break;
-
-fptr=fptr.next;
-sptr=sptr.next;
+temp1=temp1.next;
 }
-
-System.out.println("LAST NODE: "+fptr.data);
-fptr.next=null;
 }
-
-//CASE OF NO LOOP:-
 return;
 }
 }
-
 
 
 
@@ -161,4 +155,4 @@ this.data=data;
 this.next=null;
 }
 }
-//REMOVE-LINKEDLIST-LOOP-METHOD-2
+//REMOVE-LINKEDLIST-LOOP-METHOD-1

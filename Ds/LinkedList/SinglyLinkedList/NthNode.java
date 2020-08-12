@@ -2,7 +2,7 @@ package SINGLYLINKEDLIST;
 import java.util.*;
 
 
-public class List7
+public class NthNode
 {
 public static void main(String[] args)
 {

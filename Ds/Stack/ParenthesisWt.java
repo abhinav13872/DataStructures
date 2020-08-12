@@ -16,18 +16,15 @@ Scanner sc=new Scanner(System.in);
 System.out.print("EXPRESSION: ");
 String str = sc.nextLine().trim();
 
-//Update the closing Index
-getClosingIndex(str);
+fillMap(str);
 System.out.println("WEIGHT OF EXPRESSION: "+calcWeight(str,0,str.length()-1));
 }
 
 
-/*
-Function to calculate and store
+/*Function to calculate and store
 the closing index of each opening 
-bracket in the parenthesis
-*/
-public static void getClosingIndex(String str) 
+bracket in HashMap*/
+public static void fillMap(String str) 
 {
 Stack<Integer> s = new Stack<Integer>(); 
 
@@ -41,7 +38,7 @@ if(c == ')')
 {
 /*If it's a closing bracket, 
 pop index of it's corresponding 
-opening bracket*/ 
+opening bracket*/
 
 int startIndex=s.pop(); 
 

@@ -1,4 +1,4 @@
-package SINGLYLINKEDLIST;
+package REMOVELOOP;
 import java.util.*;
 public class List10
 {
