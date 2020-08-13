@@ -15,34 +15,82 @@ if(n > 0) System.out.print("SCAN DOUBLYLINKEDLIST ELEMENTS: ");
 while(n-- > 0) head=insertAtEnd(head,sc.nextInt());
 Print(head);									//FORWARD-PRINTING	
 
-System.out.print("ENTER THE VALUES TO BE SWAPPED: ");
-swapNodes(head,sc.nextInt(),sc.nextInt());
-Print(head);									//FORWARD-PRINTING	
+System.out.println("#REARRANGED DOUBLYLINKEDLIST:- ");
+Node head1=rearrangeList(head);
+Print(head1);									//FORWARD-PRINTING	
 
+System.out.println("#REVERSED DOUBLYLINKEDLIST:- ");
+Node head2=reverseLL(head);
+Print(head2);
 }
 
 
-private static void swapNodes(Node head,int x, int y)
+private static Node rearrangeList(Node head)					//REARRANGE METHOD
 {
 if(head != null)
 {
-Node ptr1=head;
-Node ptr2=head;
-while(ptr1.next != null && ptr1.data != x) ptr1=ptr1.next;
-//NOW "ptr1" IS AT REQUIRED POSITION
+//FOR EVEN POSITION's ELEMENTS:-
+Node fptr=head.next;								//POINTER FOR EVEN POSITION
+Node HEAD=null;
 
-while(ptr2.next != null && ptr2.data != y) ptr2=ptr2.next;
-//NOW "ptr2" IS AT REQUIRED POSITION
+while(fptr != null && fptr.next != null)
+{
+HEAD=insertAtEnd(HEAD,fptr.data);
+fptr=fptr.next.next;
+}
+if(fptr != null) HEAD=insertAtEnd(HEAD,fptr.data);
+/*
+SINCE LAST ELEMENT ARE GETTING IGNORED SO WE HAVE INSERTED THEM
+VIA "if" STATEMENT IF THE LAST ELEMENT IS AT "EVEN POSITION"
+*/
 
-if(ptr1.data != x || ptr2.data != y) return;
-int a=ptr1.data;
-int b=ptr2.data;
-ptr1.data=b;
-ptr2.data=a;
+
+//FOR ODD POSITION's ELEMENTS:-
+fptr=head;									//POINTER FOR ODD POSITION
+while(fptr != null && fptr.next != null)
+{
+HEAD=insertAtEnd(HEAD,fptr.data);
+fptr=fptr.next.next;
+}
+if(fptr != null) HEAD=insertAtEnd(HEAD,fptr.data);
+return HEAD;
+/*
+SINCE LAST ELEMENT ARE GETTING IGNORED SO WE HAVE INSERTED THEM
+VIA "if" STATEMENT IF THE LAST ELEMENT IS AT "ODD POSITION"
+*/
+
+}
+System.out.println("#NOTHING TO REARRANGE . EMPTY DOUBLYLINKEDLIST");
+return head;
 }
 
-System.out.println("#NOTHING TO SWAP -> EMPTY DOUBLYLINKEDLIST");
-return;
+
+
+private static Node reverseLL(Node head)					//REVERSE LIST
+{
+Node temp = null;
+Node current = head;
+
+while (current !=  null)
+{
+//System.out.println("current.data=> "+current.data);
+temp = current.prev;								//PREVIOUS REFERANCE OF CURRENT
+current.prev = current.next;							//UPDATING PREVIOUS TO MAKE IT REVERSED
+current.next = temp;								//UPDATING NEXT
+current = current.prev;
+/*
+HERE WE DID IS WHAT WE KEPT THE PREVIOUS AND UPDATE THE PREVIOUS TO
+IT's NEXT
+
+NOW WE CONNECTED NEXT AS PREVIOUS AND PREVIOUS AS NEXT
+
+SINCE "current.prev" IS POINTING TO NEXT ELEMENT'S REFERANCE
+NOW CURRENT IS UPDATED TO IT's NEXT ELEMENT's REFERANCE
+*/
+
+}
+if(temp != null ) return temp.prev;
+return head;
 }
 
 
@@ -107,4 +155,4 @@ prev=null;
 next=null;
 }
 }
-//SWAP TWO NODES OF DOUBLYLINKEDLIST	
+//REARRANGE SUCH EVEN POSITION ELEMENTS COMES BEFORE ODD ONES..

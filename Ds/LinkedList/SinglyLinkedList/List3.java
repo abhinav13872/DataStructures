@@ -45,9 +45,9 @@ private Node sortLL(Node head)					//SORT LINKEDLIST
 {
 if(head != null)
 {
-Node HEAD=null;							//HEAD OF SORTED LINKEDLIST
-Node ptr1=head;							//POINTER IN UN-SORTED LINKEDLIST
-Node ptr2=null;							//POINTER IN SORTED LINKEDLIST
+Node HEAD=null;								//HEAD OF SORTED LINKEDLIST
+Node ptr1=head;								//POINTER IN UN-SORTED LINKEDLIST
+Node ptr2=null;								//POINTER IN SORTED LINKEDLIST
 
 while(ptr1 != null)
 {
@@ -67,16 +67,12 @@ ptr2=ptr2.next;
 Node temp=new Node(ptr1.data);
 if(HEAD != null)
 {
-if(ptr2.data <= ptr1.data)						//INSERTION IN BETWEEN THE SORTED LINKEDLIST [ptr2.data <= ptr1.data]
-{
-temp.next=ptr2.next;
-ptr2.next=temp;
-}
-else  if(ptr2.data > ptr1.data)
+
+if(ptr1.data <= ptr2.data)
 {
 if(ptr1.data < HEAD.data)
 {
-System.out.println("#UPDATING HEAD:"+temp.data);
+//INSERTION AT HEAD:
 temp.next=ptr2;
 HEAD=temp;
 }
@@ -86,18 +82,22 @@ temp.next=ptr2;
 preptr2.next=temp;
 }
 }
+
+else
+{
+temp.next=null;
+ptr2.next=temp;
+}
+
 }
 else
 {
-System.out.println("#INITIALIZING HEAD:"+temp.data);
+//INITIALIZING HEAD:
 temp.next=HEAD;
 HEAD=temp;
 }
-
-Print(HEAD);
 ptr1=ptr1.next;
 }
-
 return HEAD;
 }
 System.out.println("#NOTHING TO SORT -> EMPTY LINKEDLIST");

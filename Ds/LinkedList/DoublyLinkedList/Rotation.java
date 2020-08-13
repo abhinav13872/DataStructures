@@ -1,7 +1,8 @@
 package DOUBLYLINKEDLIST;
 import java.util.Scanner;
 
-public class DList2
+
+public class Rotation
 {
 public static void main(String[] args)
 {
@@ -15,39 +16,71 @@ if(n > 0) System.out.print("SCAN DOUBLYLINKEDLIST ELEMENTS: ");
 while(n-- > 0) head=insertAtEnd(head,sc.nextInt());
 Print(head);									//FORWARD-PRINTING	
 
-System.out.print("ENTER THE VALUES TO BE SWAPPED: ");
-swapNodes(head,sc.nextInt(),sc.nextInt());
+System.out.println("COUNT OF NODES: "+getCount(head));
+
+System.out.println("#ROTATE THE DOUBLYLINKEDLIST BY K ELEMENTS:-");
+System.out.print("SCAN VALUE OF K: ");
+head=rotateByK(head,sc.nextInt());
 Print(head);									//FORWARD-PRINTING	
 
 }
 
 
-private static void swapNodes(Node head,int x, int y)			//SWAPS GIVEN NODES
+
+private static int getCount(Node head)					//COUNT OF NODES
 {
 if(head != null)
 {
-Node ptr1=head;
-Node ptr2=head;
-while(ptr1.next != null && ptr1.data != x) ptr1=ptr1.next;
-//NOW "ptr1" IS AT REQUIRED POSITION
+Node tail=head;
+while(tail.next != null) tail=tail.next;
 
-while(ptr2.next != null && ptr2.data != y) ptr2=ptr2.next;
-//NOW "ptr2" IS AT REQUIRED POSITION
-
-if(ptr1.data != x || ptr2.data != y) return;
-
-int a=ptr1.data;
-int b=ptr2.data;
-
-ptr1.data=b;
-ptr2.data=a;
-
-return;
+Node x=tail;
+int total=0;
+for(total=0;(x != null);total++) x=x.prev;
+return total;
+}
+return 0;
 }
 
-System.out.println("#NOTHING TO SWAP -> EMPTY DOUBLYLINKEDLIST");
-return;
+
+
+private static Node rotateByK(Node head, int k)				//ROTATE BY K ELEMENTS
+{
+if(head != null)
+{
+Node tail=head;
+int len=1;
+while(tail.next != null)
+{
+len++;
+tail=tail.next;
 }
+
+//CASE OF INVALID K:-
+if(k > len || k <= 1) return head;
+
+
+//CASE OF VALID K:-
+
+/*Make the list circular
+then break the link
+before specified k position*/
+
+tail.next=head;
+head.prev=tail;
+
+Node ptr=head;
+while(--k > 1) ptr=ptr.next;
+
+Node HEAD=ptr.next;
+HEAD.prev=null;
+ptr.next=null;
+return HEAD;
+}
+System.out.println("#NOTHING TO ROTATE -> EMPTY DOUBLYLINKEDLIST");
+return head;
+}
+
 
 
 private static Node insertAtEnd(Node head,int data)				//INSERTION AT END
@@ -68,6 +101,7 @@ return head;
 }
 
 
+
 private static void Print(Node head)						//FORWARD-PRINT
 {
 System.out.print("DOUBLYLINKEDLIST: ");
@@ -78,6 +112,7 @@ head=head.next;
 }
 System.out.println("\n");
 }
+
 
 
 private static void backwardPrint(Node head)					//BACKWARD-PRINT
@@ -92,10 +127,10 @@ while(ptr != null)
 System.out.print(ptr.data+" ");
 ptr=ptr.prev;
 }
-
 System.out.println("\n");
 }
 }
+
 
 
 class Node
@@ -111,4 +146,4 @@ prev=null;
 next=null;
 }
 }
-//SWAP TWO NODES OF DOUBLYLINKEDLIST	
+//ROTATE DOUBLYLINKEDLIST BY K ELEMENTS

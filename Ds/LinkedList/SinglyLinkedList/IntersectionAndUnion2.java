@@ -1,6 +1,10 @@
 package SINGLYLINKEDLIST;
 import java.util.Scanner;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Collections;
+import java.util.ArrayList;
 import java.util.Iterator;
 
 
@@ -16,7 +20,7 @@ this.next=null;
 }
 
 
-public class IntersectionAndUnion
+public class IntersectionAndUnion2
 {
 Node head=null;
 Node tail=null;
@@ -60,39 +64,10 @@ Print(head3);
 
 private static Node intersectionOfLists(Node head1,Node head2)
 {
-HashSet<Integer> set1=new HashSet<>();
-HashSet<Integer> set2=new HashSet<>();
+HashSet<Integer> set1=new LinkedHashSet<>();
+HashSet<Integer> set2=new LinkedHashSet<>();
 
 Node temp1=head1,temp2=head2;
-int len1=0,len2=0;
-
-while(temp1 != null)
-{
-len1++;
-temp1=temp1.next;
-}
-
-while(temp2 != null)
-{
-len2++;
-temp2=temp2.next;
-}
-
-if(len1 >= len2)
-{
-temp1=head1;
-temp2=head2;
-}
-else
-{
-temp1=head2;
-temp2=head1;
-}
-
-/*Now temp1 is pointing head
-of longer list and temp2 is 
-pointing to smaller one*/
-
 while(temp1 != null)
 {
 set1.add(temp1.data);
@@ -107,8 +82,19 @@ temp2=temp2.next;
 
 Node head3=null;
 //INTERSECTION:-
-HashSet<Integer> set3=new HashSet<>(set1);
+HashSet<Integer> set3=new LinkedHashSet<>(set1);
 set3.retainAll(set2);
+
+/*Since set is a unordered collection
+so we first convert into list
+then convert back into set*/
+
+/*LinkedHashSet preserves the order*/
+
+List<Integer> list=new ArrayList<>(set3);
+java.util.Collections.sort(list);
+
+set3=new LinkedHashSet<>(list);
 
 Iterator<Integer> itr=set3.iterator();
 while(itr.hasNext()) head3=insertAtEnd(head3,itr.next());
@@ -118,39 +104,10 @@ return head3;
 
 private static Node unionOfLists(Node head1,Node head2)
 {
-HashSet<Integer> set1=new HashSet<>();
-HashSet<Integer> set2=new HashSet<>();
+HashSet<Integer> set1=new LinkedHashSet<>();
+HashSet<Integer> set2=new LinkedHashSet<>();
 
 Node temp1=head1,temp2=head2;
-int len1=0,len2=0;
-
-while(temp1 != null)
-{
-len1++;
-temp1=temp1.next;
-}
-
-while(temp2 != null)
-{
-len2++;
-temp2=temp2.next;
-}
-
-if(len1 >= len2)
-{
-temp1=head1;
-temp2=head2;
-}
-else
-{
-temp1=head2;
-temp2=head1;
-}
-
-/*Now temp1 is pointing head
-of longer list and temp2 is 
-pointing to smaller one*/
-
 while(temp1 != null)
 {
 set1.add(temp1.data);
@@ -164,9 +121,20 @@ temp2=temp2.next;
 }
 
 Node head3=null;
-//INTERSECTION:-
-HashSet<Integer> set3=new HashSet<>(set1);
+//UNION:-
+HashSet<Integer> set3=new LinkedHashSet<>(set2);
 set3.addAll(set2);
+
+/*Since set is a unordered collection
+so we first convert into list
+then convert back into set*/
+
+/*LinkedHashSet preserves the order*/
+
+List<Integer> list=new ArrayList<>(set3);
+java.util.Collections.sort(list);
+
+set3=new LinkedHashSet<>(list);
 
 Iterator<Integer> itr=set3.iterator();
 while(itr.hasNext()) head3=insertAtEnd(head3,itr.next());
@@ -200,4 +168,5 @@ head=head.next;
 System.out.println("\n");
 }
 }
-//INTERSECTION OF 2 LINKEDLISTS
+//Sorted Intersection And Union Of 2 LinkedLists
+//[(O(m+n))]
