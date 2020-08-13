@@ -16,7 +16,7 @@ while(t-- > 0)
 {
 Node head = null;
 System.out.print("ENTER THE NO. OF OF ELEMENTS FOR LINKEDLIST: ");
-n = Integer.parseInt(s.nextLine());
+n = Integer.parseInt(s.next());
 if(n > 0) 
 {
 System.out.print("SCAN LINKEDLIST: ");
@@ -40,8 +40,8 @@ private static Node shift(Node org)						//SHIFT METHOD
 if(org != null)
 {
 Node HEAD=org;
-int min=99999;									//MIN IN A LINKEDLIST
-int max=-99999;								//MAX IN A LINKEDLIST
+int min=Integer.MAX_VALUE;							//MIN IN A LINKEDLIST
+int max=Integer.MIN_VALUE;							//MAX IN A LINKEDLIST
 
 while(HEAD != null)
 {
@@ -52,7 +52,8 @@ HEAD=HEAD.next;
 System.out.println("min: "+min);
 System.out.println("max: "+max);
 
-
+/*To avoid the Ambiguity
+and addidng two times*/
 if(min == max) return org;
 
 //BREAKING THE MIN ELEMENT LINKS:-
@@ -76,6 +77,9 @@ Node temp=new Node(min);
 temp.next=org;
 org=temp;									//UPDATING LINKEDLIST HEAD
 
+//BREAKING THE MAX ELEMENT LINKS:-
+if(max != org.data)
+{
 Node ptr=org;
 Node preptr=ptr;
 
@@ -84,14 +88,13 @@ while(ptr.data != max)
 preptr=ptr;
 ptr=ptr.next;
 }
-
-//BREAKING MAX ELEMENT LINKS
 preptr.next=ptr.next;
-ptr.next=null;
+//ptr.next=null;
+}
+else org=org.next;
 
 //INSERTING MAX ELEMENT AT END:-
 Node tail=org;
-
 while(tail.next != null) tail=tail.next;					//LASTNODE OF LINKEDLIST
 tail.next=new Node(max);
 return org;
