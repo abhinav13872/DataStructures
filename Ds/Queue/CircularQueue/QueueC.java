@@ -1,4 +1,4 @@
-package QUEUE;
+package CIRCULARQUEUE;
 import java.util.Scanner;
 
 
