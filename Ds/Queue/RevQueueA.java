@@ -6,7 +6,7 @@ import java.util.Stack;
 
 public class RevQueueA
 {
-int F,R;									//"FRONT" AND "REAR" POINTERS
+int F,R;									//"FRONT" AND "REAR" POINTERS TO INDEX
 final int SIZE;								//SIZE OF QUEUE
 int arr[];									//ARRAY
 
@@ -91,6 +91,41 @@ System.out.println("NOTHING TO REVERSE -> QUEUE UNDERFLOW");
 
 
 
+private void reverseKElementsOfQueue(RevQueueA q,int K)				//REVERSE K ELEMENTS OF QUEUE
+{
+if(q.F != -1 && q.F <= q.R)
+{
+/*
+STEP-1: DEQUEUE EACH ELEMENT AND
+	PUSH TO STACK TILL "K" TIMES
+STEP-2: DEQUEUE REMAINING ELEMENTS
+	AND ENQUEUE TO ANOTHER QUEUE
+STEP-3: POP EACH ELEMENT FROM STACK
+	AND ENQUEUE TO QUEUE
+STEP-4: DEQUEUE THE ELEMENTS OF ANOTHER
+	QUEUE AND ENQUEUE IN MAIN QUEUE
+**/
+
+Stack<Integer> s=new Stack<>();
+RevQueueA q2=new RevQueueA(SIZE);
+
+while(q.F != -1 && q.F <= q.R && K-- != 0) s.push(q.dequeue());
+
+while(q.F != -1 && q.F <= q.R) q2.enqueue(q.dequeue());
+
+while(!s.isEmpty()) q.enqueue(s.pop());
+
+while(q2.F != -1 && q2.F <= q2.R) q.enqueue(q2.dequeue());
+
+System.out.println("FRONT==>"+q.F);
+System.out.println("Rear==>"+q.R);
+return;
+}
+System.out.println("NOTHING TO REVERSE -> QUEUE UNDERFLOW");
+}
+
+
+
 private static void Print(RevQueueA q)						//PRINT METHOD
 {
 System.out.print("\nQUEUE: ");
@@ -129,8 +164,13 @@ System.out.println("REAR: "+q.R);
 Print(q);
 
 System.out.print("#REVERSING QUEUE:- ");
-q.reverseQueue(q);
+/*q.reverseQueue(q);
+Print(q);*/
+
+System.out.print("\nNO. OF ENTRIES TO BE REVERSED: ");
+q.reverseKElementsOfQueue(q,sc.nextInt());
 Print(q);
+
 }
 }
 //REVERSE "LINEAR QUEUE"
