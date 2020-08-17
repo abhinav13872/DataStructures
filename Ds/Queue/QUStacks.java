@@ -83,19 +83,32 @@ public class QUStacks
 {
 void enqueue(StackA st1,StackA st2,int item)			//ENQUEUE
 {
-if(st1.isFull()) return;
-
-while(!st2.isEmpty()) st1.push(st2.pop());
-st1.arr[++st1.top]=item;
+st1.push(item);
 }
 
 
 int dequeue(StackA st1,StackA st2)				//DEQUEUE
 {
-while(!st1.isEmpty()) st2.push(st1.pop());
+if(st1.isEmpty()) return -1;
 
-if(!st2.isEmpty()) return st2.pop();
-return -1;
+/*
+STEP-1: POP ALL THE ELEMENTS
+	FROM STACK-1 AND PUSH TO
+	STACK-2
+STEP-2: NOW ELEMENT AT TOP OF
+	STACK-1 IS THE ELEMENT
+	TO BE DELETED
+STEP-3: POP ALL THE ELEMENTS
+	FROM STACK-2 AND PUSH
+	TO STACK-1
+	[TO MAINTAIN THE INSERTION]
+*/	
+while(st1.top != 0) st2.push(st1.pop());
+
+int x=st1.pop();
+
+while(!st2.isEmpty()) st1.push(st2.pop());
+return x;
 }
 
 
@@ -122,7 +135,7 @@ System.out.print("ENTER AN ELEMENT TO BE ENQUEUED: ");
 q.enqueue(st1, st2, s.nextInt());
 }
 
-else System.out.print("DEQUEUED: "+q.dequeue(st1, st2) + " ");
+else System.out.print("ITEM DEQUEUED: "+q.dequeue(st1, st2) + " ");
 
 System.out.print("\nSTACK1: ");
 st1.Print(st1);
