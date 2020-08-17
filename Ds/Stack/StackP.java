@@ -57,6 +57,27 @@ return true;
 }
 
 
+private void Print(StackP s)						//PRINT METHOD
+{
+System.out.print("STACK: ");
+if(s.top == -1) return;
+
+
+StackP s2=new StackP(size);
+
+/*To Print we will use a ptr
+to top i.e "TOP"
+We will not pop the elements
+for printing of Stack*/
+
+int TOP=s.top;
+while(TOP != -1) s2.push(arr[TOP--]);
+
+while(s2.top != -1) System.out.print(s2.pop()+" ");
+System.out.println();
+}
+
+
 public static void main(String[] args)
 {
 Scanner sc=new Scanner(System.in);
@@ -64,7 +85,6 @@ System.out.print("ENTER THE SIZE OF STACK: ");
 int size=sc.nextInt();
 
 StackP s1=new StackP(size);
-StackP s2=new StackP(size);
 
 System.out.print("SCAN NO. OF ELEMENT TO BE PUSHED: ");
 int n=sc.nextInt();
@@ -72,18 +92,7 @@ int n=sc.nextInt();
 System.out.print("SCAN ELEMENTS: ");
 while(n-- > 0) s1.push(sc.nextInt());
 
-
-System.out.println("top: "+s1.top);
-while(s1.top != -1)
-{
-s2.push(s1.pop());
-//System.out.println("top: "+s1.top);
-//System.out.println("ELEMENT PUSHED: "+s2.peek());
-}
-
-System.out.print("ELEMENT IN STACK: ");
-while(s2.top != -1) System.out.print(s2.pop()+" ");
-System.out.println();
+s1.Print(s1);
 }
 }
 //PRINT ELEMENTS IN THE SAME OREDER AS INSERTED IN STACK
