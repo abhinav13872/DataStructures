@@ -1,8 +1,8 @@
-package QUEUE;
+package CIRCULARQUEUE;
 import java.util.Scanner;
 
 
-public class QueueC
+public class QueueCA
 {
 int F,R;									//"FRONT" AND "REAR" POINTERS
 final int SIZE;								//SIZE OF QUEUE
@@ -10,7 +10,7 @@ int arr[];									//ARRAY
 
 
 
-public QueueC(int s)
+public QueueCA(int s)
 {
 F=-1;
 R=-1;
@@ -70,7 +70,7 @@ return element;
 
 
 
-private static void Print(QueueC q)						//PRINT METHOD
+private static void Print(QueueCA q)						//PRINT METHOD
 {
 System.out.print("\nQUEUE: ");
 /*A "ptr" is a pointer to "F"(Front)
@@ -88,7 +88,7 @@ public static void main(String[] args)
 {
 Scanner sc=new Scanner(System.in);
 System.out.print("SIZE OF QUEUE: ");
-QueueC q=new QueueC(sc.nextInt());
+QueueCA q=new QueueCA(sc.nextInt());
 
 System.out.print("ENTER ELEMENT TO BE ENQUEUED: ");
 q.enqueue(sc.nextInt());

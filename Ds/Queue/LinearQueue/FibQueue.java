@@ -1,15 +1,15 @@
-package QUEUE;
+package LINEARQUEUE;
 import java.util.Scanner;
 
 
-public class QueueA
+public class FibQueue
 {
 int F,R;									//"FRONT" AND "REAR" POINTERS
 final int SIZE;								//SIZE OF QUEUE
 int arr[];									//ARRAY
 
 
-public QueueA(int s)
+public FibQueue(int s)
 {
 F=-1;
 R=-1;
@@ -65,7 +65,29 @@ return arr[F++];
 
 
 
-private static void Print(QueueA q)						//PRINT METHOD
+private static int fibonacciSeries(FibQueue q,int n)				//FIBONAACI-SERIES METHOD
+{
+/*
+STEP-1: ENQUEUE CURRENT FIBONACCI
+STEP-2: ENQUEUE NEXT FIBONACCI
+*/
+q.enqueue(0);
+q.enqueue(1);
+
+for(int i=0;i<n;i++)
+{
+int n1=q.dequeue();
+int n2=q.dequeue();
+
+q.enqueue(n2);
+q.enqueue(n1+n2);
+}
+return q.dequeue();
+} 
+
+
+
+private static void Print(FibQueue q)						//PRINT METHOD
 {
 System.out.print("\nQUEUE: ");
 /*A "ptr" is a pointer to "F"(Front)
@@ -82,23 +104,13 @@ System.out.println("\n");
 public static void main(String[] args)
 {
 Scanner sc=new Scanner(System.in);
+
 System.out.print("SIZE OF QUEUE: ");
-QueueA q=new QueueA(sc.nextInt());
+FibQueue q=new FibQueue(sc.nextInt());
 
-
-System.out.print("#NO. OF ELEMENTS TO BE ENQUEUED: ");
-int E=sc.nextInt();
-while(E-- > 0)
-{
-System.out.print("ENTER ELEMENT TO BE ENQUEUED: ");
-q.enqueue(sc.nextInt());
-}
-
-System.out.print("#NO. OF ELEMENTS TO BE DEQUEUED: ");
-int D=sc.nextInt();
-while(D-- > 0) System.out.println("ELEMENT DEQUEUED: "+q.dequeue());
-
-Print(q);
+System.out.print("ENTER THE POSITION FOR FIBONACCI SERIES: ");
+int P=sc.nextInt();
+System.out.println("FIBONACCI OF \'"+P+"\' is: "+fibonacciSeries(q,P));
 }
 }
 //ARRAY IMPLEMENTATION OF "LINEAR QUEUE"

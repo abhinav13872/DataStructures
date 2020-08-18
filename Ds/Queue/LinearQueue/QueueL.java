@@ -1,4 +1,4 @@
-package QUEUE;
+package LINEARQUEUE;
 import java.util.Scanner;
 
 

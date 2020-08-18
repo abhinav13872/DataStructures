@@ -1,4 +1,4 @@
-package QUEUE;
+package LINEARQUEUE;
 import java.util.Scanner;
 
 
@@ -146,3 +146,6 @@ System.out.println("\n");
 }
 }
 //Queue USING TWO Stacks
+/*push to stack1 directly
+in case of pop() pop all the entries till size becomes 1
+and push to stack2 to maintain insertion order for stack1 **/
