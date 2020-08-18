@@ -10,7 +10,7 @@ public static void main(String[] args)
 HashSet<String> set=new HashSet<>();
 //TreeSet<String> set=new TreeSet<>();//sorted collection
 
-//Here data is not added as in indexing approach.
+//Here data is not added as in "INDEXING" approach.
 //We got hashCodes for elements which are being added
 
 set.add("AVANTIKA");
@@ -19,8 +19,8 @@ set.add("ABHINAV");
 set.add("ABHINAV");
 set.add("ABHISHEK");
 
-//1.Data is Unique(NO REDNDANCY)
-//2.Data is unordered in output due to HASHING
+//1.Data is "Unique"(NO REDNDANCY).
+//2.Its a "UNORDERED" Collection due to "HASHING".
 
 System.out.println(set);
 
@@ -37,11 +37,12 @@ SET:-
  1.HASHSET
  2.LINKEDHASHSET
  3.TREESET
-*/
 
-/*
-SOME COMMON METHODS OF COLLECTION FRAMEWORK:-
- ->remove()
- ->contains()
+METHODS:-
+ ->add(element)
+ ->clear()
+ ->contains(element)
+ ->isEmpty()
+ ->remove(element)
  ->size()
 */

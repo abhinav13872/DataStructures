@@ -17,7 +17,7 @@ arr=new int[SIZE];
 }
 
 
- void enqueue(int data)						//ENQUEUE
+void enqueue(int data)							//ENQUEUE
 {
 //CASE OFront EMPTY QUEUE
 if((Front == -1 && Rear == -1) || Front > Rear)
@@ -28,29 +28,29 @@ return;
 }
 
 
-//CASE OFront FrontULL QUEUE
+//CASE OF FULL QUEUE
 if(Rear == SIZE-1)
 {
 System.out.println("#CAN'T ENQUEUE -> QUEUE OVERearFrontLOW");
 return;
 }
 
-//NORearMAL CASE
+//NORMAL CASE
 arr[++Rear]=data;
 }
 
 
 
- int dequeue()								//DEQUEUE
+int dequeue()								//DEQUEUE
 {
-//CASE OFront EMPTY QUEUE
+//CASE OF EMPTY QUEUE
 if((Front == -1 && Rear == -1) || Front > Rear)
 {
 System.out.println("#CAN'T DEQUEUE -> EMPTY QUEUE");
 return -1;
 }
 
-//CASE OFront SINGLE ELEMENT
+//CASE OF SINGLE ELEMENT
 if(Front == Rear)
 {
 int x=arr[Front];
@@ -58,7 +58,7 @@ Front=Rear=-1;
 return x;
 }
 
-//NORearMAL CASE
+//NORMAL CASE
 return arr[Front++];
 }
 
@@ -82,38 +82,29 @@ System.out.println("\n");
 
 public class SUQueue
 {
-void push(QueueA q1,QueueA q2,int item)				//PUSH METHOD
+void push(QueueA qa1,QueueA qa2,int item)				//PUSH METHOD
 {
-//ENTRY CORRECTOR
-while(q2.Front != -1 && q2.Front <= q2.Rear)
-{
-System.out.println("-----------------------");
-int x=q2.dequeue();
-q1.enqueue(x);
-}
-
 //FULL QUEUE CASE
-if(q2.Rear == q2.SIZE-1) return;
-
-q1.enqueue(item);
-}
-
-
-
-int pop(QueueA q1,QueueA q2)						//POP METHOD
-{
-while(q1.Front != -1 && q1.Front <= q1.Rear)
-{
-System.out.println("========================");
-int x=q1.pop();
-q2.enqueue(x);
-}
+if(qa1.Rear > qa1.SIZE-1) return;
 
 //NORMAL CASE
-if(q2.Front != -1 && q2.Front <= q2.Rear) return q2.dequeue();
+while(qa1.Front != -1 && qa1.Front <= qa1.Rear) qa2.enqueue(qa1.dequeue());    
+qa1.enqueue(item);
+while(qa2.Front != -1 && qa2.Front <= qa2.Rear) qa1.enqueue(qa2.dequeue());
+}
 
+
+
+int pop(QueueA qa1,QueueA qa2)					//POP METHOD
+{
 //EMPTY QUEUE CASE
-return -1;
+//if(qa1.Front == -1 || qa1.Front > qa1.Rear) return -1;
+
+/*In our code dequeue method handles
+the empty case too
+That's y we have no need to handle it*/
+
+return qa1.dequeue();
 }
 
 
@@ -127,27 +118,22 @@ System.out.print("TESTCASES: ");
 t = Integer.parseInt(sc.nextLine());
 
 SUQueue st = new SUQueue();
-QueueA q1=new QueueA(100);
-QueueA q2=new QueueA(100);
+QueueA qa1=new QueueA(100);
+QueueA qa2=new QueueA(100);
 
 while(t-- > 0)
 {
-System.out.print("ENTER \'1\' TO PUSH ELSE TO POP: ");
+System.out.print("ENTER \'1\' AND ITEM TO BE PUSHED ELSE TO POP: ");
 K = sc.nextInt();
 
-if(K == 1)
-{
-System.out.print("ENTER AN ELEMENT TO BE PUSHED: ");
-st.push(q1, q2, sc.nextInt());
-}
-
-else System.out.print("ITEM POPPED: "+st.pop(q1, q2) + " ");
+if(K == 1) st.push(qa1, qa2, sc.nextInt());
+else System.out.print("ITEM POPPED: "+st.pop(qa1, qa2) + " ");
 
 System.out.print("\nQueue1: ");
-q1.Print(q1);
+qa1.Print(qa1);
 
 System.out.print("\nQueue2: ");
-q2.Print(q2);
+qa2.Print(qa2);
 System.out.println("\n");
 }
 }
