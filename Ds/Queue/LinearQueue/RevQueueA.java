@@ -24,18 +24,18 @@ arr=new int[SIZE];
 
 private void enqueue(int data)						//ENQUEUE
 {
+//CASE OF FULL QUEUE
+if(R == SIZE-1)
+{
+System.out.println("#CAN'T ENQUEUE -> QUEUE OVERFLOW");
+return;
+}
+
 //CASE OF EMPTY QUEUE
 if((F == -1 && R == -1) || F > R)
 {
 F=R=0;
 arr[F]=data;
-return;
-}
-
-//CASE OF FULL QUEUE
-if(R == SIZE-1)
-{
-System.out.println("#CAN'T ENQUEUE -> QUEUE OVERFLOW");
 return;
 }
 

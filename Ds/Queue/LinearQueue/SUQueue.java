@@ -4,9 +4,9 @@ import java.util.Scanner;
 
 class QueueA
 {
-int Front,Rear;							//"FrontRearONT" AND "RearEARear" POINTERearS
-final int SIZE;							//SIZE OFront QUEUE
-int arr[];								//ARearRearAY
+int Front,Rear;							//"FRONT" AND "Rear" POINTERS
+final int SIZE;							//SIZE OF QUEUE
+int arr[];								//ARRAY
 
 
 public QueueA(int s)
@@ -19,19 +19,18 @@ arr=new int[SIZE];
 
 void enqueue(int data)							//ENQUEUE
 {
-//CASE OFront EMPTY QUEUE
+//CASE OF FULL QUEUE
+if(Rear == SIZE-1)
+{
+System.out.println("#CAN'T ENQUEUE -> QUEUE OVERFLOW");
+return;
+}
+
+//CASE OF EMPTY QUEUE
 if((Front == -1 && Rear == -1) || Front > Rear)
 {
 Front=Rear=0;
 arr[Front]=data;
-return;
-}
-
-
-//CASE OF FULL QUEUE
-if(Rear == SIZE-1)
-{
-System.out.println("#CAN'T ENQUEUE -> QUEUE OVERearFrontLOW");
 return;
 }
 

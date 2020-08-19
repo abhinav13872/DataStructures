@@ -39,6 +39,7 @@ Front=Rear=null;
 return x;
 }
 
+//NORMAL CASE:
 int x=Front.data;
 Front=Front.next;
 return x;
