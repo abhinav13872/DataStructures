@@ -163,12 +163,11 @@ arr[L]=item;
 if(R != SIZE-1)
 {
 int index=R;
-while(index != -1 && index != (L-1))
-{
-arr[index+1]=arr[index];
-index--;
-}
+while(index != -1 && index != (L-1)) arr[index+1]=arr[index--];
 arr[L]=item;
+
+//THEREFORE RIGHT POINTER HAS TO BE UPDATED
+R++;
 }
 
 //FULL QUEUE CASE

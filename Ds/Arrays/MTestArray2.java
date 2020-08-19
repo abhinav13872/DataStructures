@@ -3,6 +3,21 @@ class MTestArray2
 {
 public static void main(String[] args)
 {
+/*
+int a[][];
+a=new int[2][2];
+a[0][0]=1;
+a[0][1]=2;
+
+for(int i[]:a)
+{
+for(int j:i)
+{
+System.out.print(j+" ");
+}
+System.out.println();
+}**/
+
 int a[][]={{1,2,3},{4,5,6},{7,8,9}};
 int b[][]={{1,2,3},{4,5,6},{7,8,9}};
 int c[][]={{1,2,3},{4,5,6},{7,8,9}};
@@ -20,4 +35,6 @@ System.out.println(s);
 
 }
 }
-//INITIALIZER-LIST
+/*
+->FOR-EACH LOOP
+->INITIALIZER-LIST*/
