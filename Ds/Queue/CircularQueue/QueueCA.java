@@ -12,8 +12,7 @@ int arr[];									//ARRAY
 
 public QueueCA(int s)
 {
-F=-1;
-R=-1;
+F=R=-1;
 SIZE=s;
 arr=new int[SIZE];
 }
@@ -22,6 +21,13 @@ arr=new int[SIZE];
 
 private void enqueue(int data)						//ENQUEUE
 {
+//CASE OF FULL QUEUE
+if(SIZE == 0 || (R+1)%SIZE == F)
+{
+System.out.println("#CAN'T ENQUEUE -> QUEUE OVERFLOW");
+return;
+}
+
 //CASE OF EMPTY QUEUE
 if(F == -1 && R == -1)
 {
@@ -29,14 +35,6 @@ arr[++F]=data;
 R++;
 return;
 }
-
-//CASE OF FULL QUEUE
-if((R+1)%SIZE == F)
-{
-System.out.println("#CAN'T ENQUEUE -> QUEUE OVERFLOW");
-return;
-}
-
 
 //NORMAL INSERTION
 R=(R+1)%SIZE;
