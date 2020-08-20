@@ -39,39 +39,39 @@ int i;
 void enqueue(int item)
 {
 //CASE OF INVALID SIZE
-if(SIZEQ <= 0 || SIZEP <= 0)
+if(SIZEQ <= 0 || SIZEP <= 0 || i >= SIZEP)
 {
 System.out.println("#ITEM \'"+item+"\' CAN'T BE ENQUEUED -> QUEUE OVERFLOW");
 return;
 }
 
+System.out.println("======>i: "+i);
 //CASE OF FULL QUEUE
-if(SIZEQ != 0 && (Rear+1)%SIZEQ == Front)
+if((trace[i][1]+1)%SIZEQ == trace[i][0])
 {
-//System.out.println("======>i: "+i+"|REAR: "+Rear+"|FRONT: "+Front);
-i++;
-
 //CASE OF FULL PRIORITY QUEUE
-if(i == SIZEP)
+if(i+1 >= SIZEP)
 {
 System.out.println("#ITEM \'"+item+"\' CAN'T BE ENQUEUED -> QUEUE OVERFLOW");
 return;
 }
+i++;
 }
 
 //CASE OF EMPTY QUEUE
 if(trace[i][0] == -1 && trace[i][1] == -1)
 {
-Front=Rear=trace[i][0]=trace[i][1]=0;
-array[i][Rear]=item;
-//System.out.println("======>i: "+i+"|REAR: "+Rear+"|FRONT: "+Front);
+trace[i][0]=trace[i][1]=0;
+array[i][0]=item;
+//System.out.println("======>i: "+i);
 return;
 }
 
 //NORMAL INSERTION
-Rear=trace[i][1]=(trace[i][1]+1)%SIZEQ;
-array[i][Rear]=item;
-//System.out.println("======>i: "+i+"|REAR: "+Rear+"|FRONT: "+Front);
+trace[i][1]=(trace[i][1]+1)%SIZEQ;
+int x=trace[i][1];
+array[i][x]=item;
+//System.out.println("======>i: "+i);
 return;
 }
 
@@ -88,14 +88,14 @@ return -1;
 }
 
 //CASE OF EMPTY QUEUE
-if(trace[l][0] == -1 && trace[l][1] == -1)
+if((trace[l][0] == -1 && trace[l][1] == -1))
 {
-l++;
-if(l == SIZEP)
+if(l+1 == SIZEP)
 {
 System.out.println("#CAN'T DEQUEUE -> QUEUE UNDERFLOW");
 return -1;
 }
+l++;
 }
 
 //CASE OF SINGLE ELEMENT
@@ -157,5 +157,11 @@ System.out.print("ENTER THE NO. OF ELEMENTS TO BE DEQUEUED: ");
 int D=sc.nextInt();
 while(D-- > 0) System.out.println("ELEMENT DEQUEUED: "+q.dequeue());
 Print(q);
+/*
+System.out.print("ENTER THE NO. OF ELEMENTS TO BE ENQUEUED: ");
+E=sc.nextInt();
+System.out.print("SCAN ELEMENTS TO BE ENQUEUED: ");
+while(E-- > 0) q.enqueue(sc.nextInt());
+Print(q);*/
 }
 }
