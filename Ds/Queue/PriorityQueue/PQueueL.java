@@ -4,44 +4,82 @@ import java.util.Scanner;
 
 public class PQueueL
 {
+public static Node front, rear;
+
 public static void main(String[] args)
 {
 Scanner sc=new Scanner(System.in);
-System.out.print("QUEUE SIZE: ");
+PQueueL q=new PQueueL();
+
+System.out.print("NO. OF QUERIES: ");
 int n=sc.nextInt();
 
-Node queue=null;
 while(n-- > 0)
 {
-System.out.print("SCAN PRIORITY AND DATA OF NODE: ");
-queue=insertAtEnd(queue,sc.nextInt(),sc.nextInt());
-}
-Print(queue);
+System.out.print("#QUERY: ");
+int n1=sc.nextInt();
 
-queue=sortLL(queue);
-Print(queue);
-
-System.out.print("ENTER PRIORITY FOR DELETION: ");
-queue=delete(queue,sc.nextInt());
-Print(queue);
-}
-
-
-private static Node insertAtEnd(Node head,int prty,int data)		//INSERTION AT END
+if(n1 == 1)
 {
-if(head != null)
+System.out.print("SCAN DATA AND PRIORITY OF NODE: ");
+q.EnQueue(sc.nextInt(),sc.nextInt());
+}
+else System.out.print("ELEMENT DEQUEUED: "+q.DeQueue());
+Print(front);
+}
+
+}
+
+public void EnQueue(int data, int priority)				//ENQUEUE
 {
-Node tail=head;
-while(tail != null && tail.next != null) tail=tail.next;
+if(front != null)
+{
 
-Node temp=new Node(prty,data);
-tail.next=temp;
-return head;
-}
-head=new Node(prty,data);
-return head;
+Node temp=new Node(data,priority);
+if(priority < front.priority)
+{
+//INSERTION AT FRONT
+temp.next=front;
+front=temp;
+return;
 }
 
+else
+{
+//INSERTION IN BETWEEN....
+Node ptr=front;
+Node preptr=ptr;
+
+System.out.println("PREPTR: "+preptr.data);
+while(ptr != null && ptr.priority <= priority)
+{
+preptr=ptr;
+System.out.println("=====>PREPTR: "+preptr.data);
+ptr=ptr.next;
+}
+
+temp.next=preptr.next;
+preptr.next=temp;
+return;
+}
+}
+
+//EMPTY QUEUE CASE:
+front=new Node(data,priority);
+}    
+
+
+public int DeQueue()							//DEQUEUE
+{
+if(front != null)
+{
+int x=front.data;
+if(front == rear) front=rear=null;
+else front=front.next;
+return x;
+}
+return -1;
+} 
 
 
 private static Node delete(Node head,int value)			//DELETION BY PRIORITY
@@ -51,7 +89,7 @@ if(head != null)
 Node ptr=head;
 Node preptr=head;
 
-while(ptr.next != null && ptr.prty != value)
+while(ptr.next != null && ptr.priority != value)
 {
 preptr=ptr;
 ptr=ptr.next;
@@ -59,7 +97,7 @@ ptr=ptr.next;
 
 if(ptr == preptr) return head.next;					//CASE OF DELETION OF 1ST ELEMENT
 
-if(ptr != preptr && ptr.prty != value) return head;			//CASE OF NO MATCH FOUND
+if(ptr != preptr && ptr.priority != value) return head;			//CASE OF NO MATCH FOUND
 
 preptr.next=ptr.next;
 return head;
@@ -69,72 +107,9 @@ return head;
 }
 
 
-
-private static Node sortLL(Node head)						//SORT LINKEDLIST
-{
-if(head != null)
-{
-Node HEAD=null;								//HEAD OF SORTED LINKEDLIST
-Node ptr1=head;								//POINTER IN UN-SORTED LINKEDLIST
-Node ptr2=null;								//POINTER IN SORTED LINKEDLIST
-
-while(ptr1 != null)
-{
-ptr2=HEAD;
-Node preptr2=ptr2;
-
-while(ptr2 != null && ptr2.next != null)
-{
-if(ptr1.prty <= ptr2.prty) break;
-
-preptr2=ptr2;
-ptr2=ptr2.next;
-}
-
-
-//LINKING:-
-Node temp=new Node(ptr1.prty,ptr1.data);
-if(HEAD != null)
-{
-if(ptr1.prty <= ptr2.prty)
-{
-if(ptr1.prty < HEAD.prty)
-{
-//INSERTION AT HEAD:
-temp.next=ptr2;
-HEAD=temp;
-}
-else
-{
-temp.next=ptr2;
-preptr2.next=temp;
-}
-}
-
-else
-{
-temp.next=null;
-ptr2.next=temp;
-}
-
-}
-else
-{
-//INITIALIZING HEAD:
-temp.next=HEAD;
-HEAD=temp;
-}
-ptr1=ptr1.next;
-}
-return HEAD;
-}
-return head;
-}
-
-
 private static void Print(Node head)					//PRINT METHOD
 {
-System.out.print("QUEUE: ");
+System.out.print("\nQUEUE: ");
 while(head != null)
 {
 System.out.print(head.data+" ");
@@ -147,12 +122,12 @@ System.out.println("\n");
 
 class Node								//NODE
 {
-int data,prty;
+int data,priority;
 Node next;
 
-public Node(int prty,int data)
+public Node(int data,int priority)
 {
-this.prty=prty;
+this.priority=priority;
 this.data=data;
 }
 }
