@@ -2,41 +2,29 @@ package SINGLYLINKEDLIST;
 import java.util.*;
 
 
-public class List14
+
+public class PallindromeProb1
 {
 static Node head=null;								//HEAD OF LINKEDLIST
 static Node HEAD=null;								//REF. OF HEAD
 
+
 public static void main(String[] args)
 {
 Scanner sc=new Scanner(System.in);
-System.out.print("Scan LINKEDLIST size: ");
+System.out.print("NO. OF ELEMENTS IN A LINKEDLIST: ");
 int n=sc.nextInt();
 
 if(n > 0)
 {
-System.out.print("Scan LINKEDLIST: ");
+System.out.print("LINKEDLIST: ");
 while(n-- > 0) head=insertAtEnd(head,sc.nextInt());
 HEAD=head;
 }
 
 System.out.println("LINKEDLIST IS PALLINDROME: "+isPallindrome(head));
-
-System.out.println("MIDDLE ELEMENT IS: "+ midElement(head));
-
-System.out.print("ENTER THE VALUE OF N: ");
-Node temp=NthNode(head,sc.nextInt());
-System.out.println("Nth NODE FROM END: "+temp.data);
-
-/*
-//TO CREATE LOOP:-
-Node tail=head;
-while(tail.next != null) tail=tail.next;
-tail.next=head;
-*/
-
-System.out.println("LOOP PRESENT IN A LINKEDLIST: "+detectLoop(head));
 }
+
 
 
 private static boolean isPallindrome(Node head)				//PALLINDROME
@@ -58,7 +46,35 @@ return checkPallindrome(head,sptr);
 return false;
 }
 
+/*
+//METHOD-1:RECURSION
+private static boolean checkPallindrome(Node ptr1,Node ptr2)			//CHECKS PALLINDROME USING RECURSSION
+{
+if(ptr2 == null) return true;
 
+boolean result=checkPallindrome(ptr1,ptr2.next);
+System.out.println("result: "+result);
+if(!result) return false;
+//IF "result" COMES FALSE THEN NO NEED TO CHECK FURTHER!
+
+System.out.println("\nINITIALLY:-");
+System.out.println("ptr1: "+ptr1.data);
+System.out.println("ptr2: "+ptr2.data);
+
+ptr1=HEAD;
+HEAD=HEAD.next;
+
+System.out.println("AFTER UPDATING \"ptr1\":-");
+System.out.println("ptr1==> "+ptr1.data);
+System.out.println("ptr2==> "+ptr2.data);
+
+if(ptr1.data != ptr2.data) return false;
+return true;
+}*/
+
+
+
+//METHOD-2:COMPARISION IN HALVES:
 private static boolean checkPallindrome(Node head,Node mid)			//CHECKS PALLINDROME USING LINKEDLIST
 {
 Node head1=null;
@@ -94,7 +110,8 @@ return true;
 }
 
 
-private static Node reverse(Node head)					//REVERSE LINKEDLIST
+
+private static Node reverse(Node head)
 {
 if(head != null)
 {
@@ -110,58 +127,6 @@ return head;
 }
 
 
-private static int midElement(Node head)					//MIDDLE ELEMENT
-{
-Node sptr=head;
-Node fptr=head;
-
-while(fptr != null && fptr.next != null)
-{
-fptr=fptr.next.next;
-sptr=sptr.next;
-}
-return sptr.data;
-}
-
-
-private static Node NthNode(Node head,int n)					//Nth NODE FROM END
-{
-if(head != null)
-{
-Node fptr=head;
-Node sptr=head;
-
-while(n-- > 1) fptr=fptr.next;
-
-while(fptr.next != null)
-{
-fptr=fptr.next;
-sptr=sptr.next;
-}
-return sptr;
-}
-return head;
-} 
-
-
-private static boolean detectLoop(Node head)					//DETECT LOOP
-{
-if(head != null)
-{
-Node fptr=head;
-Node sptr=head;
-
-while(fptr != null && fptr.next != null)
-{
-fptr=fptr.next.next;
-sptr=sptr.next;
-if(fptr == sptr) return true;
-}
-
-}
-return false;
-}
-
 
 private static Node insertAtBegin(Node head,int data)			//INSERTION AT BEGINNING
 {
@@ -174,6 +139,7 @@ return temp;
 head=new Node(data);
 return head;
 }
+
 
 
 private static Node insertAtEnd(Node head,int data)				//INSERTION AT END
@@ -190,6 +156,7 @@ return head;
 head=new Node(data);
 return head;
 }
+
 
 
 private static void Print(Node head)						//PRINT
@@ -217,9 +184,7 @@ this.next=null;
 }
 }
 /*
-->PALLINDROME
-->REVERSE LINKEDLIST
-->MID ELEMENT
-->Nth NODE FROM END
-->DETECT LOOP
+PALLINDROME TEST
+->USING RECURSION
+->COMPAIRING LINKEDLIST's HALVES
 */

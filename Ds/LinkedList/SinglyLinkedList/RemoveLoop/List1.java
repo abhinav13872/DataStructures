@@ -2,36 +2,30 @@ package REMOVELOOP;
 import java.util.*;
 
 
-public class List8
+public class List1
 {
 public static void main(String[] args)
 {
 Scanner sc=new Scanner(System.in);
-System.out.print("No. of Testcases: ");
+List1 R=new List1();
+
+System.out.print("Testcases: ");
 int T=sc.nextInt();
 
-while(T-->0)
+while(T-- > 0)
 {
-System.out.print("Enter the Size of LINKEDLIST: ");
+System.out.print("ENTER THE NO. OF ELEMENTS IN A LINKEDLIST: ");
 int n=sc.nextInt();
+Node head=null;
 
-System.out.print("Scan LINKEDLIST: ");
-Node head=new Node(sc.nextInt());
-Node tail=head;
-for(int i=0;i<n-1;i++)
-{
-tail.next=new Node(sc.nextInt());
-tail=tail.next;
-}
-
+if(n > 0) System.out.print("SCAN LINKEDLIST: ");
+while(n-- > 0) head=insertAtEnd(head,sc.nextInt());
 Print(head);
 
-System.out.print("Scan Position for creating Loop in a LINKEDLIST: ");
-int p=sc.nextInt();
-makeLoop(head,p);
+System.out.print("POSITION FOR CREATING LOOP IN A LINKEDLIST: ");
+makeLoop(head,sc.nextInt());							//MAKES LOOP
 
-Solver s=new Solver();
-s.RemoveLoop(head);//REMOVE LOOP METHOD CALLED
+R.RemoveLoop(head);								//REMOVES LOOP
 
 if(detectLoop(head)) System.out.println("LOOP PRESENT!!");
 else System.out.println("NO LOOP");
@@ -41,9 +35,27 @@ Print(head);
 }
 
 
-public static void makeLoop(Node head,int p)					//MAKE LOOP
+
+private static Node insertAtEnd(Node head,int data)				//INSERTION_AT_END
 {
-if(p==0) return;
+if(head != null)
+{
+Node tail=head;
+while(tail != null && tail.next != null) tail=tail.next;
+
+Node temp=new Node(data);
+tail.next=temp;
+return head;
+}
+head=new Node(data);
+return head;
+}
+
+
+
+private static void makeLoop(Node head,int p)					//MAKE-LOOP METHOD
+{
+if(p == 0) return;
 Node curr=head;
 Node last=head;
 
@@ -59,19 +71,8 @@ last.next=curr;
 }
 
 
-public static void Print(Node head)						//PRINT
-{
-System.out.print("LINKEDLIST: ");
-while(head != null)
-{
-System.out.print(head.data+" ");
-head=head.next;
-}
-System.out.println("\n");
-}
 
-
-public static boolean detectLoop(Node head)					//DETECT LOOP
+private static boolean detectLoop(Node head)					//DETECT-LOOP METHOD
 {
 Node fptr=head;//FAST POINTER
 Node sptr=head;//SLOW POINTER
@@ -89,13 +90,10 @@ if(fptr == sptr) return true;
 }
 return false;
 }
-}
 
 
 
-class Solver
-{
-public void RemoveLoop(Node head)						//REMOVE LOOP
+private static void RemoveLoop(Node head)					//REMOVE-LOOP METHOD
 {
 Node fptr=head;
 Node sptr=head;
@@ -140,6 +138,19 @@ temp1=temp1.next;
 }
 }
 return;
+}
+
+
+
+private static void Print(Node head)						//PRINT
+{
+System.out.print("\nLINKEDLIST: ");
+while(head != null)
+{
+System.out.print(head.data+" ");
+head=head.next;
+}
+System.out.println("\n");
 }
 }
 

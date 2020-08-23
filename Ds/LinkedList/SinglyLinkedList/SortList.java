@@ -1,14 +1,14 @@
 package SINGLYLINKEDLIST;
 import java.util.Scanner;
 
-public class List3
+public class SortList
 {
 Node head;								//START NODE
 
-public List3()
+public SortList()
 {}
 
-public List3(int data)
+public SortList(int data)
 {
 if(head == null)
 head=new Node(data);
@@ -21,11 +21,11 @@ Scanner sc=new Scanner(System.in);
 System.out.print("ENTER THE NO. OF ELEMENTS IN A LINKEDLIST: ");
 int n=sc.nextInt();
 
-List3 list=null;
+SortList list=null;
 if(n > 0)
 {
 System.out.print("SCAN LINKEDLIST ELEMENTS: ");
-list=new List3(sc.nextInt());
+list=new SortList(sc.nextInt());
 
 Node temp=list.head;
 while(n-- != 1)
@@ -34,72 +34,56 @@ temp.next=new Node(sc.nextInt());
 temp=temp.next;
 }
 }
-else list=new List3();
+else list=new SortList();
 
 list.head=list.sortLL(list.head);
 list.Print(list.head);
 }
 
 
+
 private Node sortLL(Node head)					//SORT LINKEDLIST
 {
 if(head != null)
 {
-Node HEAD=null;								//HEAD OF SORTED LINKEDLIST
-Node ptr1=head;								//POINTER IN UN-SORTED LINKEDLIST
-Node ptr2=null;								//POINTER IN SORTED LINKEDLIST
+Node HEAD=null;							//HEAD OF SORTED LINKEDLIST
+Node ptr1=head;							//POINTER ON UN-SORTED LINKEDLIST
 
 while(ptr1 != null)
 {
-ptr2=HEAD;
-Node preptr2=ptr2;
-
-while(ptr2 != null && ptr2.next != null)
+if(HEAD != null)
 {
-if(ptr1.data <= ptr2.data) break;
+Node temp=new Node(ptr1.data);					//NODE TO BE INSERTED
 
+if(temp.data < HEAD.data)						//INSERTION AT HEAD
+{
+temp.next=HEAD;
+HEAD=temp;
+//System.out.println("UPDATING HEAD: "+HEAD.data);
+}
+else
+{
+Node ptr2=HEAD;							//PTR ON SORTED LIST
+Node preptr2=ptr2;							//PRE-PTR ON SOTED LIST
+
+while(ptr2 != null && (ptr2.data <= ptr1.data))
+{
 preptr2=ptr2;
+//System.out.println("PREPTR: "+preptr2.data);
 ptr2=ptr2.next;
 }
 
-
-//LINKING:-
-Node temp=new Node(ptr1.data);
-if(HEAD != null)
-{
-
-if(ptr1.data <= ptr2.data)
-{
-if(ptr1.data < HEAD.data)
-{
-//INSERTION AT HEAD:
-temp.next=ptr2;
-HEAD=temp;
-}
-else
-{
-temp.next=ptr2;
+temp.next=preptr2.next;
 preptr2.next=temp;
 }
 }
-
-else
-{
-temp.next=null;
-ptr2.next=temp;
-}
-
-}
-else
-{
-//INITIALIZING HEAD:
-temp.next=HEAD;
-HEAD=temp;
-}
+else HEAD=new Node(ptr1.data);					//INITIALIZING HEAD
 ptr1=ptr1.next;
 }
 return HEAD;
 }
+
+
 System.out.println("#NOTHING TO SORT -> EMPTY LINKEDLIST");
 return head;
 }

@@ -2,7 +2,7 @@ package SINGLYLINKEDLIST;
 import java.util.*;
 
 
-public class List13
+public class PallindromeProb2
 {
 static Node head=null;								//HEAD OF LINKEDLIST
 static Node HEAD=null;								//REF. OF HEAD
@@ -10,10 +10,10 @@ static Node HEAD=null;								//REF. OF HEAD
 public static void main(String[] args)
 {
 Scanner sc=new Scanner(System.in);
-System.out.print("Scan LINKEDLIST size: ");
+System.out.print("ENTER THE NO. OF ELEMENTS IN A LINKEDLIST: ");
 int n=sc.nextInt();
 
-System.out.print("Scan LINKEDLIST: ");
+System.out.print("LINKEDLIST: ");
 while(n-- > 0) head=insertAtEnd(head,sc.nextInt());
 HEAD=head;
 
@@ -21,7 +21,8 @@ System.out.println("LINKEDLIST IS PALLINDROME: "+isPallindrome(head));
 }
 
 
-static boolean isPallindrome(Node head)
+
+private static boolean isPallindrome(Node head)
 {
 Node HEAD=head;
 if(head != null)
@@ -42,6 +43,7 @@ return false;
 }
 
 
+
 private static Node insertAtEnd(Node head,int data)				//INSERTION AT END
 {
 if(head != null)
@@ -56,6 +58,7 @@ return head;
 head=new Node(data);
 return head;
 }
+
 
 
 private static void Print(Node head)						//PRINT
@@ -82,7 +85,4 @@ this.data=data;
 this.next=null;
 }
 }
-/*
-PALLINDROME TEST
-USING STRINGS..
-*/
+//PALLINDROME TEST USING STRINGS..

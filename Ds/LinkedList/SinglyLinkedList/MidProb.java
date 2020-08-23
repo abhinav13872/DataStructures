@@ -1,18 +1,47 @@
 package SINGLYLINKEDLIST;
 import java.util.Scanner;
 
-public class List2
-{
-Node head;									//START NODE
 
-public List2()
-{}
 
-public List2(int data)
+public class MidProb
 {
-if(head == null)
-head=new Node(data);
+static Node head=null;								//HEAD OF LINKEDLIST
+
+public static void main(String[] args)
+{
+Scanner sc=new Scanner(System.in);
+MidProb list=new MidProb();
+
+System.out.print("ENTER THE NO. OF ELEMENTS IN A LINKEDLIST: ");
+int n=sc.nextInt();
+
+System.out.print("LINKEDLIST: ");
+while(n-- > 0) head=list.insertAtEnd(head,sc.nextInt());
+
+System.out.println("MIDDLE ELEMENT IS: "+ list.midElement(list.head));
+
+System.out.println("\n#ROTATING BY MID:-");
+list.head=list.rotateByMid(list.head);
+list.Print(list.head);
 }
+
+
+
+private Node insertAtEnd(Node head,int data)					//INSERTION AT END
+{
+if(head != null)
+{
+Node tail=head;
+while(tail != null && tail.next != null) tail=tail.next;
+
+Node temp=new Node(data);
+tail.next=temp;
+return head;
+}
+head=new Node(data);
+return head;
+}
+
 
 
 private int midElement(Node head)						//MIDDLE ELEMENT
@@ -27,6 +56,7 @@ sptr=sptr.next;
 }
 return sptr.data;
 }
+
 
 
 private Node rotateByMid(Node head)						//ROTATE BY MID
@@ -51,35 +81,6 @@ sptr.next=null;
 return head;
 }
 return head;
-}
-
-
-public static void main(String[] args)
-{
-Scanner sc=new Scanner(System.in);
-
-System.out.print("ENTER THE NO. OF ELEMENTS IN A LINKEDLIST: ");
-int n=sc.nextInt();
-
-List2 list=null;
-if(n > 0)
-{
-System.out.print("SCAN LINKEDLIST ELEMENTS: ");
-list=new List2(sc.nextInt());
-
-Node temp=list.head;
-while(n-- != 1)
-{
-temp.next=new Node(sc.nextInt());
-temp=temp.next;
-}
-}
-else list=new List2();
-
-System.out.println("MIDDLE ELEMENT IS: "+ list.midElement(list.head));
-
-list.head=list.rotateByMid(list.head);
-list.Print(list.head);
 }
 
 

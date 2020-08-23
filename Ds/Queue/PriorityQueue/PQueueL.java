@@ -50,11 +50,11 @@ else
 Node ptr=front;
 Node preptr=ptr;
 
-System.out.println("PREPTR: "+preptr.data);
+//System.out.println("PREPTR: "+preptr.data);
 while(ptr != null && ptr.priority <= priority)
 {
 preptr=ptr;
-System.out.println("=====>PREPTR: "+preptr.data);
+//System.out.println("=====>PREPTR: "+preptr.data);
 ptr=ptr.next;
 }
 
