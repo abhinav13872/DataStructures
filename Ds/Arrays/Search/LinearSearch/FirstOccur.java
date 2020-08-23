@@ -1,4 +1,4 @@
-package BINARYSEARCH;
+package LINEARSEARCH;
 import java.util.Scanner;
 
 
@@ -9,28 +9,11 @@ public static int search(int arr[],int key)				//SEARCH_METHOD
 {
 int l=0;								//LEFT_POINTER
 int r=arr.length-1;							//RIGHT_POINTER
-  
+
 while(l <= r)
 {
-int mid=(l+r)/2;
-
-if(key < arr[mid]) r=mid-1;
-
-if(key > arr[mid]) l=mid+1; 
-
-if(arr[mid] == key)
-{
-/*HERE WE KNOW MATCH IS FOUND BUT
-NOW CHECK FOR THE FIRST MATCH**/
-
-l=mid;
-while(l > 0)
-{
-if(arr[l-1] != key) break;
-l--;
-}
-return l;
-}
+if(arr[l] == key) return l;
+l++;
 }
 return -1;
 }
@@ -51,10 +34,10 @@ FirstOccur p=new FirstOccur();
 System.out.print("SIZE OF ARRAY AND ELEMENT TO BE SEARCHED: ");
 int n=sc.nextInt();
 int key=sc.nextInt();
-int arr[]=new int[n];							//CREATION_OF_ARRAY
+int arr[]=new int[n];							//CREATION OF ARRAY
 
 System.out.print("ARRAY: ");
-for(int i=0;i<n;i++) arr[i]=sc.nextInt();				//SCANNING_OF_ARRAY
+for(int i=0;i<n;i++) arr[i]=sc.nextInt();				//SCANNING OF ARRAY
 
 System.out.println("FIRST OCCURENCE IS AT: "+p.search(arr,key));
 }
@@ -63,8 +46,6 @@ System.out.println("FIRST OCCURENCE IS AT: "+p.search(arr,key));
 }
 
 /*
-[PREREQUISITE => SORTED ARRAY]
-
 #TESTCASES:-
 
 10 4
