@@ -2,9 +2,10 @@ package PRIORITYQUEUE;
 import java.util.Scanner;
 
 
+
 public class PQueueL
 {
-public static Node front, rear;
+static Node front, rear;
 
 public static void main(String[] args)
 {
@@ -27,8 +28,9 @@ q.EnQueue(sc.nextInt(),sc.nextInt());
 else System.out.print("ELEMENT DEQUEUED: "+q.DeQueue());
 Print(front);
 }
-
 }
+
+
 
 public void EnQueue(int data, int priority)				//ENQUEUE
 {
@@ -69,6 +71,7 @@ front=new Node(data,priority);
 }    
 
 
+
 public int DeQueue()							//DEQUEUE
 {
 if(front != null)
@@ -80,6 +83,7 @@ return x;
 }
 return -1;
 } 
+
 
 
 private static Node delete(Node head,int value)			//DELETION BY PRIORITY
@@ -97,7 +101,7 @@ ptr=ptr.next;
 
 if(ptr == preptr) return head.next;					//CASE OF DELETION OF 1ST ELEMENT
 
-if(ptr != preptr && ptr.priority != value) return head;			//CASE OF NO MATCH FOUND
+if(ptr != preptr && ptr.priority != value) return head;		//CASE OF NO MATCH FOUND
 
 preptr.next=ptr.next;
 return head;
@@ -105,6 +109,7 @@ return head;
 System.out.println("#CASE OF UNDERFLOW!!");
 return head;
 }
+
 
 
 private static void Print(Node head)					//PRINT METHOD
@@ -120,6 +125,7 @@ System.out.println("\n");
 }
 
 
+
 class Node								//NODE
 {
 int data,priority;
@@ -131,3 +137,4 @@ this.priority=priority;
 this.data=data;
 }
 }
+//PRIORITY QUEUE USING LINKEDLIST

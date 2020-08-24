@@ -3,7 +3,7 @@ import java.util.Scanner;
 import java.util.Stack;
 
 
-public class Main2
+public class MinBraceReversal
 {
 public static void main(String[] args)
 {
