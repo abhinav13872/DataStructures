@@ -1,51 +1,54 @@
 package SORTING;
-import java.util.*;
+import java.util.Scanner;
 
 
 
 public class SelSort
 {
-public static void main(String[] args)
+public static void main(String [] args)
 {
 Scanner sc=new Scanner(System.in);
-System.out.print("No. of Testcases: ");
-int t=sc.nextInt();					//no. of testcases
-while(t!=0)
+System.out.print("TESTCASES: ");
+int T=sc.nextInt();
+
+while(T-- > 0)
 {
-System.out.print("Size of Array: ");
-int n=sc.nextInt();					//size of array
-int a[]=new int[n];					//creation of array
+System.out.print("SIZE OF AN ARRAY: ");
+int n=sc.nextInt();
+int arr[]=new int[n];
 
-System.out.println("Scan Array: ");
-for(int i=0;i<n;i++)
-a[i]=sc.nextInt();					//scanning of array
+System.out.print("ARRAY: ");
+for(int i=0;i<n;i++) arr[i]=sc.nextInt();
+
+System.out.println("\n#SORTING:-");
+arr=sort(arr,n);
+Print(arr,n);
+}
+}
 
 
 
-//SELECTION SORT:-
+private static int[] sort(int arr[],int n)
+{
 for(int i=0;i<n-1;i++)
 {
 int m=i;						//lowest value's index
-for(int j=i+1;j<n;j++)
-{
-if(a[j]<a[m])
-m=j;
-}
-System.out.println("=>"+a[m]);
+for(int j=i+1;j<n;j++) if(arr[j] < arr[m]) m=j;
 
 //SWAP
-int temp=a[m];
-a[m]=a[i];
-a[i]=temp;
+int temp=arr[m];
+arr[m]=arr[i];
+arr[i]=temp;
+}
+return arr;
 }
 
 
 
-//PRINTING OF ARRAY:-
-for(int i=0;i<n;i++) System.out.print(a[i] + ((i != n-1) ? " " : "\n"));
-
-t--;
-}
+private static void Print(int arr[],int n)					//PRINT-METHOD
+{
+System.out.print("ARRAY: ");
+for(int i=0;i<n;i++) System.out.print(arr[i] + ((i != n-1) ? " " : "\n\n"));
 }
 }
 

@@ -1,47 +1,51 @@
 package SORTING;
-import java.util.*;
+import java.util.Scanner;
 
 
 
 public class BubbleSort
 {
-public static void main(String[] args)
+public static void main(String [] args)
 {
 Scanner sc=new Scanner(System.in);
+System.out.print("TESTCASES: ");
+int T=sc.nextInt();
 
-System.out.print("No. of Testcases: ");
-int t=sc.nextInt();						//no. of testcases
-while(t!=0)
+while(T-- > 0)
 {
-System.out.print("Size of Array: ");
-int n=sc.nextInt();						//size of array
-int a[]=new int[n];						//creation of array
+System.out.print("SIZE OF AN ARRAY: ");
+int n=sc.nextInt();
+int arr[]=new int[n];
 
-System.out.println("Scan Array: ");
-for(int i=0;i<n;i++)
-a[i]=sc.nextInt();						//scanning of array
+System.out.print("ARRAY: ");
+for(int i=0;i<n;i++) arr[i]=sc.nextInt();
+
+System.out.println("\n#SORTING:-");
+arr=sort(arr,n);
+Print(arr,n);
+}
+}
 
 
 
-//BUBBLE SORT:-
+private static int[] sort(int arr[],int n)					//SORT-METHOD
+{
 for(int i=0;i<n;i++)
 for(int j=0;j<n-i-1;j++)
+if(arr[j]>arr[j+1])
 {
-if(a[j]>a[j+1])
+int temp=arr[j];
+arr[j]=arr[j+1];
+arr[j+1]=temp;
+}
+return arr;
+}
+
+
+
+private static void Print(int arr[],int n)					//PRINT-METHOD
 {
-int temp=a[j];
-a[j]=a[j+1];
-a[j+1]=temp;
+System.out.print("ARRAY: ");
+for(int i=0;i<n;i++) System.out.print(arr[i] + ((i != n-1) ? " " : "\n\n"));
 }
 }
-
-
-
-//PRINTING OF ARRAY:-
-for(int i=0;i<n;i++) System.out.print(a[i] + ((i != n-1) ? " " : "\n"));
-
-t--;
-}
-}
-}
-
