@@ -1,6 +1,9 @@
 package SORTING;
 import java.util.*;
-public class T1
+
+
+
+public class SelSort
 {
 public static void main(String[] args)
 {
@@ -20,7 +23,6 @@ a[i]=sc.nextInt();					//scanning of array
 
 
 //SELECTION SORT:-
-
 for(int i=0;i<n-1;i++)
 {
 int m=i;						//lowest value's index
@@ -40,14 +42,8 @@ a[i]=temp;
 
 
 //PRINTING OF ARRAY:-
+for(int i=0;i<n;i++) System.out.print(a[i] + ((i != n-1) ? " " : "\n"));
 
-for(int i=0;i<n;i++)
-{
-if(i!=n-1)
-System.out.print(a[i]+" ");
-else
-System.out.print(a[i]+"\n");
-}
 t--;
 }
 }

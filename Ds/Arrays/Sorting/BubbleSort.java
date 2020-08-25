@@ -1,7 +1,9 @@
 package SORTING;
 import java.util.*;
 
-public class T2
+
+
+public class BubbleSort
 {
 public static void main(String[] args)
 {
@@ -22,7 +24,6 @@ a[i]=sc.nextInt();						//scanning of array
 
 
 //BUBBLE SORT:-
-
 for(int i=0;i<n;i++)
 for(int j=0;j<n-i-1;j++)
 {
@@ -37,14 +38,8 @@ a[j+1]=temp;
 
 
 //PRINTING OF ARRAY:-
+for(int i=0;i<n;i++) System.out.print(a[i] + ((i != n-1) ? " " : "\n"));
 
-for(int i=0;i<n;i++)
-{
-if(i!=n-1)
-System.out.print(a[i]+" ");
-else
-System.out.print(a[i]+"\n");
-}
 t--;
 }
 }
