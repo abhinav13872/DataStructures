@@ -18,31 +18,31 @@ System.out.print("SIZE OF AN ARRAY: ");
 int n=sc.nextInt();
 int arr[]=new int[n];
 
-arr=insert(arr,n);
+System.out.print("ARRAY: ");
+for(int i=0;i<n;i++) arr[i]=sc.nextInt();
+
+arr=sort(arr,n);
 }
 }
 
 
 
-private static int[] insert(int arr[],int n)					//INSERTION_SORT-METHOD
+private static int[] sort(int arr[],int n)					//INSERTION_SORT-METHOD
 {
-int i=0;
-System.out.print("NO. OF ELEMENTS IN AN ARRAY: ");
-int N=sc.nextInt();
+for(int i=0;i<n;i++)
+{
+int key=arr[i];
+int j=i-1;
 
-while(N-- > 0)
+while(j >= 0 && arr[j] > key)
 {
-System.out.print("ENTER AN ELEMENT TO BE INSERTED: ");
-int x=sc.nextInt();
-
-for(i=arr.length-2;i>=0;i--)
-{
-if(arr[i] < x || arr[i] != 0) break;
-arr[i+1]=arr[i];
+arr[j+1]=arr[j];
+j=j-1;
 }
-arr[i+1]=x;
+arr[j+1]=key;
 Print(arr,n);
 }
+
 return arr;
 }
 
