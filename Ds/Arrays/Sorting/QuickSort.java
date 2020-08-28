@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 
 
-public class InsertionSort
+public class QuickSort
 {
 static Scanner sc=new Scanner(System.in);
 
@@ -27,22 +27,8 @@ arr=sort(arr,n);
 
 
 
-private static int[] sort(int arr[],int n)					//INSERTION_SORT-METHOD
+private static int[] sort(int arr[],int n)					//QUICK_SORT-METHOD
 {
-for(int i=0;i<n;i++)
-{
-int key=arr[i];
-int j=i-1;
-
-while(j >= 0 && arr[j] > key)
-{
-arr[j+1]=arr[j];
-j--;
-}
-arr[j+1]=key;
-Print(arr,n);
-}
-
 return arr;
 }
 
