@@ -28,7 +28,8 @@ sort(arr,0,arr.length-1);
 
 
 static  int partition(int arr[], int low, int high) 
-{ 
+{
+// Taking starting element as pivot
 int pivot = arr[low];
 int start=low;
 int end=high;
@@ -46,6 +47,7 @@ arr[end]=temp;
 }
 }
 
+// SWAP (pivot->"arr[low]" AND "arr[end]")
 int temp=arr[low];
 arr[low]=arr[end];
 arr[end]=temp;
