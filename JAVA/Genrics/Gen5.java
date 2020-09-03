@@ -1,5 +1,7 @@
 package GENERICS;
 import java.util.*;
+
+
 class Gen5
 {
 public static void main(String[] args)

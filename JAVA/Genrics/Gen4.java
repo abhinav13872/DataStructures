@@ -1,4 +1,6 @@
 package GENERICS;
+
+
 class Gen4
 {
 public <E> E[] setArray(E []e)

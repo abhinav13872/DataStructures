@@ -1,4 +1,6 @@
 package GENERICS;
+
+
 class Rect<T>
 {
 private T len;
