@@ -63,7 +63,8 @@ for(int i=0;i<n;i++) System.out.print(arr[i] + ((i != n-1) ? " " : "\n\n"));
 }
 /*
 #INSERTION_SORT:-
- ->Consider 2 sublists
+ ->In Insertion sort we divide the list into
+   two halves:
    1] Sorted sublist (arr[0])
    2] Unsorted sublist (arr[1] to arr[n-1])
  
