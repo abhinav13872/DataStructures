@@ -45,7 +45,7 @@ int key=arr[i];
 int j=i;
 
 /*Shift earlier gap-sorted elements up
-  until the correct location for the key
+  until the correct location for key
   is found.**/
 while(j >= gap && arr[j - gap] > key)
 {
