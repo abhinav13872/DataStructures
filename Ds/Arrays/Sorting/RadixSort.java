@@ -112,7 +112,11 @@ System.out.println("\n");
 
 
 #TIME-COMPLEXITY:-
- ->Best Case   : O(n*k)
- ->Average Case: O(n*k)
- ->Worst Case  : O(n*k)
+ ->Best Case   : O(d*(n+b))
+ ->Average Case: O(d*(n+b))
+ ->Worst Case  : O(d*(n+b))
+
+  d -> no. of digits in the Max element
+  n -> no. of elements in an Array
+  b -> no. of buckets (10 for Integer).
 */

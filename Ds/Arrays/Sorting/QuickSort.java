@@ -80,3 +80,17 @@ int n=arr.length;
 for(int i=0;i<n;i++) System.out.print(arr[i] + ((i != n-1) ? " " : "\n\n"));
 }
 }
+/*
+#QUICK_SORT (PARTITION-SORT):-
+=>In this algorithm we use DIVIDE AND CONQUER Technique.
+
+=>Keep on Dividing an input Array into 2 Partitions such that
+  all the elements in the Left_Partition are Less than pivot
+  and greater ones in the Right_Partition.
+
+
+#TIME-COMPLEXITY:-
+ ->Best Case   : O(n*logn)
+ ->Average Case: O(n*logn)
+ ->Worst Case  : O(n^2)
+*/

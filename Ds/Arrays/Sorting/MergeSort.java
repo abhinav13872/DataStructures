@@ -89,3 +89,18 @@ System.out.print("ARRAY: ");
 for(int i=0;i<n;i++) System.out.print(arr[i] + ((i != n-1) ? " " : "\n\n"));
 }
 }
+
+/*
+#MERGE_SORT:-
+=>In this algorithm we use DIVIDE AND CONQUER Technique.
+
+=>Divide till all the elements get isolated, and then
+  Compare and Merge the sorted halves reccurssively.
+
+
+#TIME-COMPLEXITY:-
+ ->Best Case   : O(n*logn)
+ ->Average Case: O(n*logn)
+ ->Worst Case  : O(n*logn)
+[Here we are dividing an input Array into k halves n times]
+*/
